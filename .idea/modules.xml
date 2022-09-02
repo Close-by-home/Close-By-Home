@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Close-By-Home/Close-By-Home.iml" filepath="$PROJECT_DIR$/Close-By-Home/Close-By-Home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PesquisaeInovação.iml" filepath="$PROJECT_DIR$/.idea/PesquisaeInovação.iml" />
+    </modules>
+  </component>
+</project>
