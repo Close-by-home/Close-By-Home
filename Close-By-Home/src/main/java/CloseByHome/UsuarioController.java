@@ -16,7 +16,7 @@ public class UsuarioController {
                                         @PathVariable String senha,
                                         @PathVariable String codCondominio){
 
-        System.out.println(email + senha + codCondominio);
+
         String res = user.logar(
                  email,
                  senha,
@@ -29,7 +29,7 @@ public class UsuarioController {
     //Logff
     @PostMapping("/deslogar/{email}")
     public String postDeslogar(
-                                            @PathVariable String email
+            @PathVariable String email
                                              ){
 
         String res = user.deslogar(email);

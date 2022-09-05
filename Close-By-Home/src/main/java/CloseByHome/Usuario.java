@@ -14,7 +14,7 @@ public abstract class Usuario {
     private boolean logado;
     // Construtor
 
-    private  List<Usuario> listaDeUsuarios ;
+    private  List<Usuario> listaDeUsuarios  = new ArrayList<Usuario>();
 
 
     public Usuario(String nome, String codCondominio, String email, String senha, boolean logado) {
@@ -79,10 +79,18 @@ public abstract class Usuario {
 
 // Métodos
 
+
     // LOGAR
     public  String logar(String email,String senha, String codCondominio){
 
+        listaDeUsuarios.clear();
+        UsuarioComum a = new UsuarioComum(
+                    "Carlos","177","Carlos@gmail.com",
+                    "carlos123" ,false,"20/08/2000",20,21,909070
+        );
+        listaDeUsuarios.add(a);
         System.out.println(listaDeUsuarios);
+
         for (Usuario  us: listaDeUsuarios
              ) {
             if (
@@ -103,13 +111,11 @@ public abstract class Usuario {
     }
     // DESLOGAR
     public String deslogar(String email){
-        BancoDeDados banco = new BancoDeDados();
-        List<Usuario> listaDeUsuarios = banco.getUsuarios();
+
         for (Usuario  us: listaDeUsuarios
         ){
             if (us.email.equalsIgnoreCase(email)){
                 us.setLogado(false);
-                banco.atulizarBanco(listaDeUsuarios);
                 return "Deslogado com sucesso";
             }
         }
