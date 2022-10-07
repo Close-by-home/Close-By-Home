@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoFactory;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 public class UsuarioService {
     @Autowired
@@ -19,18 +22,8 @@ public class UsuarioService {
 
         List<Usuario> listaUsuario = usuarioRepository.findAll();
         UsuarioDto res = new UsuarioDto();
-        List<UsuarioDto> listRes = new ArrayList<UsuarioDto>();
+        List<UsuarioDto> listRes = listaUsuario.stream().map(UsuarioDtoFactory::toDto).collect(Collectors.toList());
 
-        for (Usuario i: listaUsuario) {
-            res.setBloco(i.getBloco());
-            res.setCodigoCondominio(i.getCodigoCondominio());
-            res.setCpf(i.getCpf());
-            res.setEmail(i.getEmail());
-            res.setNome(i.getNome());
-            res.setSenha(i.getSenha());
-            res.setTelefone(i.getTelefone());
-            listRes.add(res);
-        }
 
         return listRes;
     }
@@ -62,7 +55,15 @@ public class UsuarioService {
         }
         return false;
     }
-
+    public Boolean ativarContaFuncionario(String email){
+        Usuario usuario = buscarIdLogado(email);
+        if (usuario != null) {
+            usuario.setFuncionario(true);
+            usuarioRepository.save(usuario);
+            return true;
+        }
+        return false;
+    }
     public Boolean buscarUsuario(String codCondominio,String email,String senha)
     {
         List<Usuario> listaUsuario = usuarioRepository.findAll();
@@ -87,4 +88,15 @@ public class UsuarioService {
         return null;
 
     }
+    private Usuario buscarIdLogado(String email){
+        List<Usuario> listaUsuario = usuarioRepository.findAll();
+        for (Usuario user : listaUsuario) {
+            if (email.equals(user.getEmail())){
+                return user;
+            }
+        }
+        return null;
+
+    }
 }
+

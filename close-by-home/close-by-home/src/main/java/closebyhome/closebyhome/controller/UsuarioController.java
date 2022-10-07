@@ -70,5 +70,18 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Email ou senha invalidos");
         }
     }
+    @PutMapping("/ativar-perfil-funcionario/{email}")
+    public ResponseEntity<Boolean> ativaConta(
+            @PathVariable String email){
+
+        Boolean res =  this.usuarioService.ativarContaFuncionario(email);
+
+        if(res == true){
+            return ResponseEntity.status(200).body(res);
+        }
+        else{
+            return ResponseEntity.status(404).body(res);
+        }
+    }
 }
 
