@@ -2,6 +2,8 @@ package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
+import closebyhome.closebyhome.models.Condominio;
+import closebyhome.closebyhome.service.CondominioService;
 import closebyhome.closebyhome.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
+    @Autowired
+    private CondominioService condominioService;
     @GetMapping
     public ResponseEntity<List<UsuarioDto>> listar() {
 
@@ -32,13 +35,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/logar/{codCondominio}/{email}/{senha}")
-    public ResponseEntity<Boolean> logar(@PathVariable String codCondominio,
+    public ResponseEntity<UsuarioDto> logar(@PathVariable String codCondominio,
                                          @PathVariable String email,
                                          @PathVariable String senha) {
 
-        Boolean res = this.usuarioService.buscarUsuario(codCondominio, email, senha);
+        UsuarioDto res = this.usuarioService.buscarUsuario(codCondominio, email, senha);
 
-        if (res == true) {
+        if (res != null) {
             return ResponseEntity.status(200).body(res);
         } else {
             return ResponseEntity.status(404).build();
@@ -47,12 +50,23 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<UsuarioDto> cadastrar(@RequestBody @Valid UsuarioDto novoUsuario) {
+    @PostMapping("/cadastrar/{idCondominio}")
+    public ResponseEntity<UsuarioDto> cadastrar(
+        @RequestBody @Valid UsuarioDto novoUsuario,
+        @PathVariable String idCondominio
+    ) {
+        Condominio codigo = this.condominioService.buscarCondominio(idCondominio);
+        UsuarioDto res = new UsuarioDto();
+        if(codigo != null){
+            res = this.usuarioService.cadastrar(novoUsuario,codigo);
+            return ResponseEntity.status(201).body(res);
+        }
+        else{
+            return  ResponseEntity.status(404).body(res);
+        }
 
-        UsuarioDto res = this.usuarioService.cadastrar(novoUsuario);
 
-        return ResponseEntity.status(201).body(res);
+
     }
 
     @PutMapping("atualizar-senha/{email}/{senhaAtual}/{novaSenha}")

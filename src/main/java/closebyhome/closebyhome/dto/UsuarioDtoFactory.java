@@ -13,7 +13,6 @@ public class UsuarioDtoFactory {
         usuarioDto.setBloco(usuarioDomain.getBloco());
         usuarioDto.setCpf(usuarioDomain.getCpf());
         usuarioDto.setEmail(usuarioDomain.getEmail());
-        usuarioDto.setCodigoCondominio(usuarioDomain.getCodigoCondominio());
         usuarioDto.setNome(usuarioDomain.getNome());
         usuarioDto.setSenha(usuarioDomain.getSenha());
         usuarioDto.setTelefone(usuarioDomain.getTelefone());
@@ -29,7 +28,6 @@ public class UsuarioDtoFactory {
         usuarioDomain.setBloco(usuarioDto.getBloco());
         usuarioDomain.setCpf(usuarioDto.getCpf());
         usuarioDomain.setEmail(usuarioDto.getEmail());
-        usuarioDomain.setCodigoCondominio(usuarioDto.getCodigoCondominio());
         usuarioDomain.setNome(usuarioDto.getNome());
         usuarioDomain.setSenha(usuarioDto.getSenha());
         usuarioDomain.setTelefone(usuarioDto.getTelefone());

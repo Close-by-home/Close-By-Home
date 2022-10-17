@@ -2,6 +2,7 @@ package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
 import closebyhome.closebyhome.dto.UsuarioDtoFactory;
+import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,14 @@ public class UsuarioService {
         return listRes;
     }
 
-    public UsuarioDto cadastrar(UsuarioDto res){
+    public UsuarioDto cadastrar(UsuarioDto res, Condominio condominio){
         Usuario user = new Usuario() ;
 
         user.setFuncionario(false);
         user.setBloco(res.getBloco());
         user.setCpf(res.getCpf());
         user.setEmail(res.getEmail());
-        user.setCodigoCondominio(res.getCodigoCondominio());
+        user.setCodigoCondominio(condominio);
         user.setNome(res.getNome());
         user.setSenha(res.getSenha());
         user.setTelefone(res.getTelefone());
@@ -64,17 +65,27 @@ public class UsuarioService {
         }
         return false;
     }
-    public Boolean buscarUsuario(String codCondominio,String email,String senha)
+    public UsuarioDto buscarUsuario(String codCondominio,String email,String senha)
     {
         List<Usuario> listaUsuario = usuarioRepository.findAll();
         for ( Usuario user : listaUsuario) {
-            if(codCondominio.equals(user.getCodigoCondominio()) &&
+            if(codCondominio.equals(user.getCodigoCondominio().getCodigoCondominio()) &&
                     email.equals(user.getEmail())&&
                     senha.equals(user.getSenha())){
-                return  true;
+
+                UsuarioDto usuarioDto = new UsuarioDto();
+
+                usuarioDto.setBloco(user.getBloco());
+                usuarioDto.setCpf(user.getCpf());
+                usuarioDto.setEmail(user.getEmail());
+                usuarioDto.setNome(user.getNome());
+                usuarioDto.setSenha(user.getSenha());
+                usuarioDto.setTelefone(user.getTelefone());
+
+                return  usuarioDto;
             }
         }
-        return false;
+        return null;
     }
 
     private Usuario buscarId(String email, String senha){

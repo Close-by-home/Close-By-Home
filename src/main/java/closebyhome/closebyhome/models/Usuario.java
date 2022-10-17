@@ -2,10 +2,7 @@ package closebyhome.closebyhome.models;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -15,7 +12,9 @@ public class Usuario {
     private int id;
     @CPF
     private String cpf;
-    private String codigoCondominio;
+    @ManyToOne
+    @JoinColumn(name = "fk_codigo_condominio")
+    private Condominio codigoCondominio;
     private String bloco;
     @Email
     private String email;
@@ -40,11 +39,11 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public String getCodigoCondominio() {
+    public Condominio getCodigoCondominio() {
         return codigoCondominio;
     }
 
-    public void setCodigoCondominio(String codigoCondominio) {
+    public void setCodigoCondominio(Condominio codigoCondominio) {
         this.codigoCondominio = codigoCondominio;
     }
 
