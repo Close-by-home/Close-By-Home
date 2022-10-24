@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Usuario", description = "Requesição dos Usuario.")
+@CrossOrigin(origins =  "http://localhost:3000",maxAge = 3600)
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -22,6 +23,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @Autowired
     private CondominioService condominioService;
+
+    //region Listar
     @GetMapping
     public ResponseEntity<List<UsuarioDto>> listar() {
 
@@ -33,7 +36,9 @@ public class UsuarioController {
 
         return ResponseEntity.status(200).body(res);
     }
+    //endregion
 
+    //region Logar
     @GetMapping("/logar/{codCondominio}/{email}/{senha}")
     public ResponseEntity<UsuarioDto> logar(@PathVariable String codCondominio,
                                          @PathVariable String email,
@@ -46,29 +51,10 @@ public class UsuarioController {
         } else {
             return ResponseEntity.status(404).build();
         }
-
-
     }
+    //endregion
 
-    @PostMapping("/cadastrar/{idCondominio}")
-    public ResponseEntity<UsuarioDto> cadastrar(
-        @RequestBody @Valid UsuarioDto novoUsuario,
-        @PathVariable String idCondominio
-    ) {
-        Condominio codigo = this.condominioService.buscarCondominio(idCondominio);
-        UsuarioDto res = new UsuarioDto();
-        if(codigo != null){
-            res = this.usuarioService.cadastrar(novoUsuario,codigo);
-            return ResponseEntity.status(201).body(res);
-        }
-        else{
-            return  ResponseEntity.status(404).body(res);
-        }
-
-
-
-    }
-
+    //region Senhas
     @PutMapping("atualizar-senha/{email}/{senhaAtual}/{novaSenha}")
     public ResponseEntity<String> atualizarSenha(
             @PathVariable String email,
@@ -84,7 +70,27 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Email ou senha invalidos");
         }
     }
+    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}/{repSenha}")
+    public ResponseEntity<String> atualizarSenhaEsquicida(
+            @PathVariable String codCondominio,
+            @PathVariable String email,
+            @PathVariable String novaSenha,
+            @PathVariable String repSenha
 
+    ) {
+
+        Boolean senhaAtualizada = this.usuarioService.atualizarSenhaEsquecida(codCondominio, email,
+                novaSenha, repSenha);
+
+        if (senhaAtualizada == true) {
+            return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou senha invalidos");
+        }
+    }
+    //endregion
+
+    //region Cadastrar e ativar perfil
     @PutMapping("/ativar-perfil-funcionario/{email}")
     public ResponseEntity<Boolean> ativaConta(
             @PathVariable String email) {
@@ -97,14 +103,27 @@ public class UsuarioController {
             return ResponseEntity.status(404).body(res);
         }
     }
-
-    public boolean comparaLetra(String letra1, String letra2) {
-        if (letra1.charAt(0) > letra2.charAt(0)) {
-            return true;
+    @PostMapping("/cadastrar/{idCondominio}")
+    public ResponseEntity<UsuarioDto> cadastrar(
+            @RequestBody @Valid UsuarioDto novoUsuario,
+            @PathVariable String idCondominio
+    ) {
+        Condominio codigo = this.condominioService.buscarCondominio(idCondominio);
+        UsuarioDto res = new UsuarioDto();
+        if(codigo != null){
+            res = this.usuarioService.cadastrar(novoUsuario,codigo);
+            return ResponseEntity.status(201).body(res);
         }
-        return false;
-    }
+        else{
+            return  ResponseEntity.status(404).body(res);
+        }
 
+
+
+    }
+    //endregion
+
+    //region Lista Obj
     public ListaObj<UsuarioDto> listaEmObj() {
 
         List<UsuarioDto> usuariosDto = this.usuarioService.buscar();
@@ -166,7 +185,37 @@ public class UsuarioController {
 
         return listaObjUsuarios;
     }
+    //endregion
 
+    //region CSV
+    @GetMapping("/grava-arquivo-csv")
+    public ResponseEntity< List<UsuarioDto>> grava(){
 
+       List<UsuarioDto> res = this.usuarioService.buscar();
+//
+//        ListaObj<UsuarioDto> listaObjUsuarios = new ListaObj<UsuarioDto>(res.size());
+        ListaObj<UsuarioDto> listaObjUsuarios = this.usuarioService.listaEmObj();
+//        for (UsuarioDto user : res){
+//            listaObjUsuarios.adiciona(user);
+//        }
+        this.usuarioService.gravaArquivoCsv( listaObjUsuarios, "ListaDeUsuario");
+
+        if (res != null) {
+            return ResponseEntity.status(200).body(res);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+
+    }
+    //endregion
+
+    //region Ordenação
+    public boolean comparaLetra(String letra1, String letra2) {
+        if (letra1.charAt(0) > letra2.charAt(0)) {
+            return true;
+        }
+        return false;
+    }
+    //endregion
 }
 
