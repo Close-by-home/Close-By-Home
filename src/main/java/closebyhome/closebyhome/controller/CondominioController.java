@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Tag(name = "Condominio", description = "Requesição dos Condominios.")
 @RestController
@@ -20,11 +21,14 @@ public class CondominioController {
     private CondominioService condominioService;
 
     @GetMapping
-    public Boolean entrar(){
+    public ResponseEntity<List<CondominioDto>> exibirTodos(){
 
-        Boolean res =true ;
+        List<CondominioDto> res= this.condominioService.buscarTodos();
 
-        return res;
+        if (res.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        return ResponseEntity.status(200).body(res);
     }
 
     @PostMapping("/cadastrar")
