@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.dto;
 
 import closebyhome.closebyhome.models.Condominio;
+import closebyhome.closebyhome.models.Funcionario;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,10 @@ public class UsuarioDto {
     private String telefone;
     private String nome;
     private String senha;
+
+
+
+
 
     public String getCpf() {
         return cpf;

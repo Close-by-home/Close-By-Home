@@ -23,6 +23,17 @@ public class Usuario {
     private String senha;
     private Boolean funcionario;
 
+    @OneToOne(mappedBy = "idUsuario")
+    private Funcionario func;
+
+    public Funcionario getFunc() {
+        return func;
+    }
+
+    public void setFunc(Funcionario func) {
+        this.func = func;
+    }
+
     public int getId() {
         return id;
     }
@@ -94,4 +105,5 @@ public class Usuario {
     public void setFuncionario(Boolean funcionario) {
         this.funcionario = funcionario;
     }
+
 }

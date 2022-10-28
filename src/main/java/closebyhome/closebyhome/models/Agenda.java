@@ -9,7 +9,8 @@ public class Agenda {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(mappedBy = "agenda")
+    @ManyToOne
+    @JoinColumn(name = "fk_codigo_funcionario")
     private Funcionario func;
 
     public int getId() {

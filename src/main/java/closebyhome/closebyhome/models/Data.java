@@ -9,7 +9,8 @@ public class Data {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(mappedBy = "data")
+    @ManyToOne
+    @JoinColumn(name = "fk_codigo_funcionario")
     private Funcionario func;
 
     public int getId() {

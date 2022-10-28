@@ -1,12 +1,16 @@
 package closebyhome.closebyhome.controller;
 
+import closebyhome.closebyhome.dto.CondominioDto;
+import closebyhome.closebyhome.dto.FuncionarioDto;
+import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.service.FuncionarioService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Tag(name = "Funcionario", description = "Requesição dos Funcionarios.")
 @RestController
@@ -21,6 +25,21 @@ public class FuncionarioController {
         Boolean res =true ;
 
         return res;
+    }
+
+    @PutMapping("{idUsario}")
+    public ResponseEntity<FuncionarioDto> cadastrarFuncionario(
+            @RequestBody @Valid FuncionarioDto novoFuncionario,
+            @PathVariable int idUsario
+    ){
+
+        FuncionarioDto res = funcionarioService.cadastrarFuncionario(novoFuncionario,idUsario);
+
+        if (res != null) {
+            return ResponseEntity.status(200).body(res);
+        } else {
+            return ResponseEntity.status(400).body(null);
+        }
     }
 
 
