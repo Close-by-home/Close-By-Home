@@ -16,7 +16,6 @@ public class UsuarioDtoFactory {
         usuarioDto.setNome(usuarioDomain.getNome());
         usuarioDto.setSenha(usuarioDomain.getSenha());
         usuarioDto.setTelefone(usuarioDomain.getTelefone());
-
         return usuarioDto;
     }
 
@@ -31,7 +30,6 @@ public class UsuarioDtoFactory {
         usuarioDomain.setNome(usuarioDto.getNome());
         usuarioDomain.setSenha(usuarioDto.getSenha());
         usuarioDomain.setTelefone(usuarioDto.getTelefone());
-
 
         return usuarioDomain;
     }
