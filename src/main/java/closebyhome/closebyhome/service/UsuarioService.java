@@ -9,6 +9,9 @@ import closebyhome.closebyhome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@RestController
+@RequestMapping("/teste")
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -212,47 +217,24 @@ public class UsuarioService {
 
         //ORDENAÇÃO POR ORDEM ALFABÉTICA
         //Como funciona?
-        //Ele roda 3 fors para organizar de na ordem alfabética de A-Z
+        //Ele roda 2 fors usando o selection sort para organizar na ordem alfabética de A-Z
 
-        //O primeiro for roda 10 vezes para que os próximos vetores ordenem 10 vezes
-        //comparando posições de letras diferentes
-        //Ex: a primeira ordenação compara os nomes i com j comparando a letra na posição 0,
-        //a segunda ordenação compara os nomes i com j com a letra na posição 1, e por ai vai...
-
-        //O segundo e terceiro for rodam para que seja comparados os valores dos nomes nas
-        // posições I e J. E se a letra(C) do obj I for maior que a letra(C) do obj J, então
-        //os ojetos trocam de posição
-        //OBS: C é o valor do primeiro for, a posição a se checar das letras
-        //Ex: Leandro(i) e Ana(j), "L"(C) é maior que "A"(C), então o obj Leandro trocaria de
-        //lugar com Ana
+        //Existe uma condicional que utiliza o compareTo, o compareTo verifica a distancia de caracteres
+        // entre os nomes i e j, se a diferença for negativa, signifca que o nome i é menor do que o nome j
+        // (na ordem alfabética) e inverte a posição de i por j
 
         UsuarioDto aux = new UsuarioDto();
-        for (int c = 0; c < 10; c++) {
             for (int i = 0; i < usuariosDto.size(); i++) {
                 for (int j = 0; j < usuariosDto.size(); j++) {
 
-                    //validação para ver qual é o menor nome e guardar a quantidade de caracteres
-                    //para evitar que o primeiro for valide uma posição de letra que não existe
-                    int menorValorDeChar = 0;
-                    if (usuariosDto.get(i).getNome().length() < usuariosDto.get(j).getNome().length()) {
-                        menorValorDeChar = usuariosDto.get(i).getNome().length();
-                    } else {
-                        menorValorDeChar = usuariosDto.get(j).getNome().length();
-                    }
+                        if (usuariosDto.get(i).getNome().compareTo(usuariosDto.get(j).getNome()) < 0) {
 
-                    menorValorDeChar--;//diminuindo o valor para ter o mesmo tamanho de indices
-                    if (c <= menorValorDeChar) {
-                        if (usuariosDto.get(i).getNome().charAt(c) < usuariosDto.get(j).getNome().charAt(c)) {
-
-                            aux = usuariosDto.get(j);
-                            usuariosDto.set(j, usuariosDto.get(i));
-                            usuariosDto.set(i, aux);
+                            aux = usuariosDto.get(i);
+                            usuariosDto.set(i, usuariosDto.get(j));
+                            usuariosDto.set(j, aux);
                         }
                     }
-
                 }
-            }
-        }
 
         //adicionando na listaObj a lista Dto após a ordenação
         for (int i = 0; i < usuariosDto.size(); i++) {
