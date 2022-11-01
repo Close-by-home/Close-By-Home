@@ -1,5 +1,7 @@
 package closebyhome.closebyhome.models;
 
+import closebyhome.closebyhome.dto.FuncionarioDto;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +13,8 @@ public class Funcionario {
     @Column(name = "id")
     private int id;
     private String nomeServico;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_descricao", referencedColumnName = "id")
+
+    @OneToOne(mappedBy = "idFuncionario")
     private Descricao descricao;
     private Double valorMinimo;
     @OneToMany
@@ -25,6 +27,20 @@ public class Funcionario {
     @JoinColumn(name="id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
 
+    public Funcionario(FuncionarioDto funcionarioDto, Usuario idUsuario) {
+
+        this.nomeServico = funcionarioDto.getNomeServico();
+        this.descricao = null;
+        this.valorMinimo = funcionarioDto.getValorMinimo();
+        this.agenda = new ArrayList<Agenda>();
+        this.data = new ArrayList<Data>();
+        this.idUsuario = idUsuario;
+    }
+    public Funcionario(){
+        this.agenda = new ArrayList<Agenda>();
+        this.data = new ArrayList<Data>();
+        this.descricao = null;
+    };
     public String getNomeServico() {
         return nomeServico;
     }

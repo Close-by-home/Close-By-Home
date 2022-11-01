@@ -7,6 +7,7 @@ import closebyhome.closebyhome.dto.UsuarioDtoFactory;
 import closebyhome.closebyhome.models.Agenda;
 import closebyhome.closebyhome.models.Data;
 import closebyhome.closebyhome.models.Funcionario;
+import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Boolean logar(){
 
@@ -27,16 +29,19 @@ public class FuncionarioService {
     }
 
     public FuncionarioDto cadastrarFuncionario(FuncionarioDto funcionarioNovo,int id){
+        Usuario user = usuarioRepository.findById(id);
+        Funcionario resFun = new Funcionario(funcionarioNovo,user);
 
-        Funcionario resFun =   null;
-                //funcionarioRepository.findByUsuarioId(id);
+
+
+        //funcionarioRepository.findByUsuarioId(id);
 
         if(resFun != null) {
             funcionarioRepository.save(resFun);
         }
        // FuncionarioDto res = factoryFuncionario.retornaFuncionarioDto(resFun);
 
-        return null;
+        return funcionarioNovo;
     }
 
     public List<Agenda> buscarAgenda(){
