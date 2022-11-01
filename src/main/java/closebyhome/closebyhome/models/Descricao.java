@@ -9,8 +9,9 @@ public class Descricao {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(mappedBy = "descricao")
-    private Funcionario func;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_funcionario", referencedColumnName = "id")
+    private Funcionario idFuncionario;
 
     public int getId() {
         return id;
@@ -21,10 +22,10 @@ public class Descricao {
     }
 
     public Funcionario getFunc() {
-        return func;
+        return idFuncionario;
     }
 
     public void setFunc(Funcionario func) {
-        this.func = func;
+        this.idFuncionario = func;
     }
 }

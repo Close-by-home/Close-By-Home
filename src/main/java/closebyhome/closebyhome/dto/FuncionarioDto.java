@@ -10,19 +10,19 @@ import java.util.List;
 public class FuncionarioDto {
 
     private String nomeServico;
-    private Descricao descricao;
+  //  private Descricao descricao;
     private Double valorMinimo;
-    private List<Agenda> agenda;
-    private List<Data> data;
-    private Usuario usuario;
+    //private List<Agenda> agenda;
+   // private List<Data> data;
+ //   private Usuario usuario;
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+ //   public Usuario getUsuario() {
+   //     return usuario;
+  //  }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//    public void setUsuario(Usuario usuario) {
+   //     this.usuario = usuario;
+  //  }
 
     public String getNomeServico() {
         return nomeServico;
@@ -32,13 +32,13 @@ public class FuncionarioDto {
         this.nomeServico = nomeServico;
     }
 
-    public Descricao getDescricao() {
-        return descricao;
-    }
+    //public Descricao getDescricao() {
+  //      return descricao;
+  //  }
 
-    public void setDescricao(Descricao descricao) {
-        this.descricao = descricao;
-    }
+  //  public void setDescricao(Descricao descricao) {
+  //      this.descricao = descricao;
+ //   }
 
     public Double getValorMinimo() {
         return valorMinimo;
@@ -48,19 +48,19 @@ public class FuncionarioDto {
         this.valorMinimo = valorMinimo;
     }
 
-    public List<Agenda> getAgenda() {
-        return agenda;
-    }
+    //public List<Agenda> getAgenda() {
+   //     return agenda;
+   // }
 
-    public void setAgenda(List<Agenda> agenda) {
-        this.agenda = agenda;
-    }
+   /// public void setAgenda(List<Agenda> agenda) {
+   //     this.agenda = agenda;
+  //  }
 
-    public List<Data> getData() {
-        return data;
-    }
+  ///  public List<Data> getData() {
+   //     return data;
+  //  }
 
-    public void setData(List<Data> data) {
-        this.data = data;
-    }
+   // public void setData(List<Data> data) {
+   //     this.data = data;
+   // }
 }
