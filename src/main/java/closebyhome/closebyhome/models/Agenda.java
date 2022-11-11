@@ -1,6 +1,8 @@
 package closebyhome.closebyhome.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Agenda {
@@ -12,6 +14,53 @@ public class Agenda {
     @ManyToOne
     @JoinColumn(name = "fk_codigo_funcionario")
     private Funcionario func;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_id_funcionario")
+    private Usuario user;
+    private LocalDate data;
+    private int notaServico;
+    private String status;
+
+    public Agenda( Funcionario func, Usuario user, LocalDate data, int notaServico, String status) {
+        this.func = func;
+        this.user = user;
+        this.data = data;
+        this.notaServico = notaServico;
+        this.status = status;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public int getNotaServico() {
+        return notaServico;
+    }
+
+    public void setNotaServico(int notaServico) {
+        this.notaServico = notaServico;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;

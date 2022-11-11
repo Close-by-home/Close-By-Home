@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.service.CondominioService;
@@ -39,12 +40,10 @@ public class UsuarioController {
     //endregion
 
     //region Logar
-    @GetMapping("/logar/{codCondominio}/{email}/{senha}")
-    public ResponseEntity<UsuarioDto> logar(@PathVariable String codCondominio,
-                                         @PathVariable String email,
-                                         @PathVariable String senha) {
+    @PostMapping("/logar")
+    public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto novoUsuario) {
 
-        UsuarioDto res = this.usuarioService.buscarUsuario(codCondominio, email, senha);
+        UsuarioDto res = this.usuarioService.buscarUsuario(novoUsuario);
 
         if (res != null) {
             return ResponseEntity.status(200).body(res);

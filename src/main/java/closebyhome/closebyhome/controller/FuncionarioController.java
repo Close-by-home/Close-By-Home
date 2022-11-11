@@ -27,7 +27,7 @@ public class FuncionarioController {
         return res;
     }
 
-    @PutMapping("{idUsario}")
+    @PostMapping("{idUsario}")
     public ResponseEntity<FuncionarioDto> cadastrarFuncionario(
             @RequestBody @Valid FuncionarioDto novoFuncionario,
             @PathVariable int idUsario
@@ -36,11 +36,12 @@ public class FuncionarioController {
         FuncionarioDto res = funcionarioService.cadastrarFuncionario(novoFuncionario,idUsario);
 
         if (res != null) {
-            return ResponseEntity.status(200).body(res);
+            return ResponseEntity.status(201).body(res);
         } else {
-            return ResponseEntity.status(400).body(null);
+            return ResponseEntity.status(404).body(null);
         }
     }
+
 
 
 }

@@ -14,8 +14,8 @@ public class Funcionario {
     private int id;
     private String nomeServico;
 
-    @OneToOne(mappedBy = "idFuncionario")
-    private Descricao descricao;
+  //  @OneToOne(mappedBy = "idFuncionario")
+  //  private Descricao descricao;
     private Double valorMinimo;
     @OneToMany
     private List<Agenda> agenda;
@@ -30,7 +30,6 @@ public class Funcionario {
     public Funcionario(FuncionarioDto funcionarioDto, Usuario idUsuario) {
 
         this.nomeServico = funcionarioDto.getNomeServico();
-        this.descricao = null;
         this.valorMinimo = funcionarioDto.getValorMinimo();
         this.agenda = new ArrayList<Agenda>();
         this.data = new ArrayList<Data>();
@@ -39,7 +38,7 @@ public class Funcionario {
     public Funcionario(){
         this.agenda = new ArrayList<Agenda>();
         this.data = new ArrayList<Data>();
-        this.descricao = null;
+      //  this.descricao = null;
     };
     public String getNomeServico() {
         return nomeServico;
@@ -65,13 +64,13 @@ public class Funcionario {
         this.nomeServico = nomeServico;
     }
 
-    public Descricao getDescricao() {
-        return descricao;
-    }
+  // public Descricao getDescricao() {
+   //     return descricao;
+   // }
 
-    public void setDescricao(Descricao descricao) {
-        this.descricao = descricao;
-    }
+//    public void setDescricao(Descricao descricao) {
+   //     this.descricao = descricao;
+  //  }
 
     public Double getValorMinimo() {
         return valorMinimo;

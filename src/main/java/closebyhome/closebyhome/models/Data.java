@@ -13,6 +13,16 @@ public class Data {
     @JoinColumn(name = "fk_codigo_funcionario")
     private Funcionario func;
 
+    private Integer dataNaoTrabalhada;
+
+    public Integer getDataNaoTrabalhada() {
+        return dataNaoTrabalhada;
+    }
+
+    public void setDataNaoTrabalhada(Integer dataNaoTrabalhada) {
+        this.dataNaoTrabalhada = dataNaoTrabalhada;
+    }
+
     public int getId() {
         return id;
     }
