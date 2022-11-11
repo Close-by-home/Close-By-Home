@@ -27,34 +27,19 @@ public class FuncionarioService {
 
         return true;
     }
-
+    public  Funcionario buscarFuncionario(int idFunc){
+        Funcionario res = funcionarioRepository.findById(idFunc);
+        return res;
+    }
     public FuncionarioDto cadastrarFuncionario(FuncionarioDto funcionarioNovo,int id){
         Usuario user = usuarioRepository.findById(id);
-        Funcionario resFun = new Funcionario(funcionarioNovo,user);
+        if(user.getFuncionario()) {
+            Funcionario resFun = new Funcionario(funcionarioNovo, user);
 
-
-
-        //funcionarioRepository.findByUsuarioId(id);
-
-        if(resFun != null) {
-            funcionarioRepository.save(resFun);
+            System.out.printf(resFun.getNomeServico());
+                funcionarioRepository.save(resFun);
         }
-       // FuncionarioDto res = factoryFuncionario.retornaFuncionarioDto(resFun);
-
         return funcionarioNovo;
     }
-
-    public List<Agenda> buscarAgenda(){
-
-
-        return null;
-    }
-
-    public List<Data> buscarDatas(){
-
-
-        return null;
-    }
-
 
 }

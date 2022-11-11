@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -15,6 +16,8 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "fk_codigo_condominio")
     private Condominio codigoCondominio;
+    @OneToMany
+    private List<Agenda> agenda;
     private String bloco;
     @Email
     private String email;

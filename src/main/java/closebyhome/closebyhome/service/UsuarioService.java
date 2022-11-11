@@ -2,6 +2,7 @@ package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
 import closebyhome.closebyhome.dto.UsuarioDtoFactory;
+import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Usuario;
@@ -81,13 +82,14 @@ public class UsuarioService {
     //endregion
 
     //region Buscar
-    public UsuarioDto buscarUsuario(String codCondominio,String email,String senha)
+    public UsuarioDto buscarUsuario(UsuarioLogarDto usuarioLogarDto)
     {
+        Usuario user = usuarioRepository.findByEmailAndSenhaAndCodigoCondominioCodigoCondominio(
+                usuarioLogarDto.getEmail(),
+                usuarioLogarDto.getSenha(),
+                usuarioLogarDto.getCodigoCondominio()
+        );
         List<Usuario> listaUsuario = usuarioRepository.findAll();
-        for ( Usuario user : listaUsuario) {
-            if(codCondominio.equals(user.getCodigoCondominio().getCodigoCondominio()) &&
-                    email.equals(user.getEmail())&&
-                    senha.equals(user.getSenha())){
 
                 UsuarioDto usuarioDto = new UsuarioDto();
 
@@ -99,9 +101,7 @@ public class UsuarioService {
                 usuarioDto.setTelefone(user.getTelefone());
 
                 return  usuarioDto;
-            }
-        }
-        return null;
+
     }
 
     private Usuario buscarId(String email, String senha){
@@ -135,7 +135,9 @@ public class UsuarioService {
         return listRes;
     }
     //endregion
-
+    public Usuario buscarUsuarioPorCpf(String cpf){
+        return  usuarioRepository.findByCpf(cpf);
+    }
     //region Arquivo Csv
     public static void gravaArquivoCsv(ListaObj<UsuarioDto> listaUsuario, String nomeArq) {
 
