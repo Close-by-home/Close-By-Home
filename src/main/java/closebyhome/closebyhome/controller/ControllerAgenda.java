@@ -34,10 +34,45 @@ public class ControllerAgenda {
     public ResponseEntity<AgendaDto> setAgendar(
             @PathVariable int idFuncionario,
             @PathVariable String cpfUsuario,
-            @RequestParam LocalDate data
+            @RequestParam String data
     ){
-        AgendaDto res = agendaService.agendarServico(idFuncionario,cpfUsuario,data);
+        AgendaDto res = agendaService.agendarServico(idFuncionario,cpfUsuario,LocalDateTime.parse(data));
 
         return ResponseEntity.status(201).body(res);
+    }
+
+    @GetMapping("/{cpfUsuario}")
+    public ResponseEntity<List<AgendaDto>> getAgendaUsuario(
+            @PathVariable String cpfUsuario
+    ){
+        List<AgendaDto> res = agendaService.buscarAgendaUsaurio(cpfUsuario);
+
+
+        if (res.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+        return  ResponseEntity.status(200).body(res);
+    }
+
+    @GetMapping("/{idFuncionario}")
+    public ResponseEntity<List<AgendaDto>> getAgendaFuncionario(
+            @PathVariable int idFuncionario
+    ){
+        List<AgendaDto> res = agendaService.buscarAgendaFuncionario(idFuncionario);
+
+
+        if (res.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+        return  ResponseEntity.status(200).body(res);
+    }
+
+    @PutMapping("atualizar-status/{novoStauts}/{codigoServico}")
+    public ResponseEntity<String> atualizarStatus(
+            @PathVariable String novoStauts,
+            @PathVariable int codigoServico
+    ){
+        agendaService.mudarStatus(novoStauts,codigoServico);
+        return ResponseEntity.status(200).body("sucesso");
     }
 }
