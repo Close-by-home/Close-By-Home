@@ -7,58 +7,48 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AgendaDto {
-    private Usuario usuario;
-    private Funcionario func;
+    private FuncionarioAgendaDto func;
 
-    private String NomeFuncionario;
-
-    private LocalDate data;
+    private int codigoServico;
+    private LocalDateTime data;
 
     private int notaServico;
     private String status;
 
-    public AgendaDto(Usuario usuario, Funcionario func,LocalDate data) {
-        this.usuario = usuario;
+    public AgendaDto( FuncionarioAgendaDto func,LocalDateTime data) {
         this.func = func;
-        NomeFuncionario = func.getIdUsuario().getNome();
         this.data = data;
         this.notaServico = 0;
         this.status = "Agendado";
+        this.codigoServico = 0;
     }
 
     public AgendaDto() {
 
     }
 
-    public Funcionario getFunc() {
+    public int getCodigoServico() {
+        return codigoServico;
+    }
+
+    public void setCodigoServico(int codigoServico) {
+        this.codigoServico = codigoServico;
+    }
+
+    public FuncionarioAgendaDto getFunc() {
         return func;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setFunc(Funcionario func) {
+    public void setFunc(FuncionarioAgendaDto func) {
         this.func = func;
     }
 
-    public String getNomeFuncionario() {
-        return NomeFuncionario;
-    }
 
-    public void setNomeFuncionario(String nomeFuncionario) {
-        NomeFuncionario = nomeFuncionario;
-    }
-
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 

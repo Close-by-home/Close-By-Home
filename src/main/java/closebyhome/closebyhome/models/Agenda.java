@@ -18,16 +18,30 @@ public class Agenda {
     @ManyToOne
     @JoinColumn(name = "fk_id_funcionario")
     private Usuario user;
-    private LocalDate data;
+
+    private LocalDateTime data;
     private int notaServico;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codigoServico;
     private String status;
 
-    public Agenda( Funcionario func, Usuario user, LocalDate data, int notaServico, String status) {
+    public Agenda( Funcionario func, Usuario user, LocalDateTime data, int notaServico, String status) {
         this.func = func;
         this.user = user;
         this.data = data;
         this.notaServico = notaServico;
         this.status = status;
+    }
+
+    public Agenda() {
+    }
+
+    public int getCodigoServico() {
+        return codigoServico;
+    }
+
+    public void setCodigoServico(int codigoServico) {
+        this.codigoServico = codigoServico;
     }
 
     public Usuario getUser() {
@@ -38,11 +52,11 @@ public class Agenda {
         this.user = user;
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
