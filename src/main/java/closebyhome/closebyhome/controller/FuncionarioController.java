@@ -1,16 +1,13 @@
 package closebyhome.closebyhome.controller;
 
-import closebyhome.closebyhome.dto.CondominioDto;
 import closebyhome.closebyhome.dto.FuncionarioDto;
-import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.service.FuncionarioService;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @Tag(name = "Funcionario", description = "Requesição dos Funcionarios.")
 @RestController
@@ -18,30 +15,21 @@ import javax.validation.Valid;
 public class FuncionarioController {
     @Autowired
     private FuncionarioService funcionarioService;
-
     @GetMapping
-    public Boolean entrar(){
-
-        Boolean res =true ;
-
-        return res;
-    }
-
-    @PostMapping("{idUsario}")
-    public ResponseEntity<FuncionarioDto> cadastrarFuncionario(
-            @RequestBody @Valid FuncionarioDto novoFuncionario,
-            @PathVariable int idUsario
-    ){
-
-        FuncionarioDto res = funcionarioService.cadastrarFuncionario(novoFuncionario,idUsario);
-
-        if (res != null) {
-            return ResponseEntity.status(201).body(res);
-        } else {
-            return ResponseEntity.status(404).body(null);
+    public ResponseEntity<List<FuncionarioDto>> listar() {
+        List<FuncionarioDto> res = this.funcionarioService.buscarTodosFuncionarios();
+        if (res.isEmpty()) {
+            return ResponseEntity.status(204).build();
         }
+        return ResponseEntity.status(200).body(res);
     }
 
-
-
+    //COMENTEI ESSA FUNÇÃO PQ ALÉM DE ESTAR SEMPRE RETORNADO TRUE, ESTAVA CONFLITANDO COM O LISTAR FUNCIONARIOS ACIMA
+//    @GetMapping
+//    public Boolean entrar(){
+//
+//        Boolean res =true ;
+//
+//        return res;
+//    }
 }

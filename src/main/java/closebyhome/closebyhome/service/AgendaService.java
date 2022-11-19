@@ -5,12 +5,12 @@ import closebyhome.closebyhome.models.Agenda;
 import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.observable.Observable;
+import closebyhome.closebyhome.pilhaObj.PilhaObj;
 import closebyhome.closebyhome.repository.AgendaRepository;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,10 +73,8 @@ public class AgendaService {
     }
     // PENSAR NA LOGICA
     public void mudarStatus(String novoStatus, int codigoAgenda){
-        Agenda  agenda = new Agenda();
-        agenda = agendaRepository.findByCodigoServico(codigoAgenda);
+        Agenda  agenda = agendaRepository.findByCodigoServico(codigoAgenda);
         agenda.setStatus(novoStatus);
-
 
         agendaRepository.save(agenda);
 
@@ -95,5 +93,52 @@ public class AgendaService {
 
     public void removerObservador(Observable obs) {
         observadores.remove(obs);
+    }
+    public List<AgendaDto> buscaOrdenadoPorData(int id,boolean empilhar){
+        List<Agenda> lista = agendaRepository.findAll();
+
+        Agenda aux;
+        for (int i = 0; i < lista.size(); i++) {
+            for (int j = 0; j < lista.size(); j++) {
+
+                if (lista.get(i).getData().isAfter(lista.get(j).getData())){
+
+                    aux = lista.get(i);
+                    lista.set(i, lista.get(j));
+                    lista.set(j, aux);
+                }
+            }
+        }
+        List<AgendaDto> listaDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
+
+        if(empilhar){
+            PilhaObj<AgendaDto> pilha = new PilhaObj(lista.size());
+
+            for (int i = 0; !pilha.isFull(); i++) {
+                pilha.push(listaDto.get(i));
+            }
+            for (int i = 0; !pilha.isEmpty(); i++) {
+                listaDto.set(i,pilha.pop());
+            }
+        }
+
+        return listaDto;
+    }
+
+    public AgendaDto avaliarAgenda(int nota,Integer idUsuario,Integer idAgenda){
+        Optional<Agenda> agendaAvaliada = agendaRepository.findById(idAgenda);
+
+        if(agendaAvaliada.isPresent() && idUsuario == agendaAvaliada.get().getUser().getId()){
+            agendaAvaliada.get().setNotaServico(nota);
+            agendaRepository.save(agendaAvaliada.get());
+
+            //retornando a agenda atualizada em formato DTO
+            List<Agenda> lista = new ArrayList<>();
+            lista.add(agendaAvaliada.get());
+            List<AgendaDto> resDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
+
+            return resDto.get(0);
+        }
+        return null;
     }
 }
