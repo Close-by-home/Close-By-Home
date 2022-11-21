@@ -5,6 +5,7 @@ import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.service.CondominioService;
+import closebyhome.closebyhome.service.FuncionarioService;
 import closebyhome.closebyhome.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class UsuarioController {
     //endregion
 
     //region Logar
-    @PostMapping("/logar")
+    @GetMapping("/logar")
     public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto novoUsuario) {
 
         UsuarioDto res = this.usuarioService.buscarUsuario(novoUsuario);
@@ -69,6 +70,7 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Email ou senha invalidos");
         }
     }
+
     @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}/{repSenha}")
     public ResponseEntity<String> atualizarSenhaEsquicida(
             @PathVariable String codCondominio,
@@ -90,11 +92,13 @@ public class UsuarioController {
     //endregion
 
     //region Cadastrar e ativar perfil
-    @PutMapping("/ativar-perfil-funcionario/{email}")
+    @PutMapping("/ativar-perfil-funcionario/{email}/{servico}/{valorMin}")
     public ResponseEntity<Boolean> ativaConta(
-            @PathVariable String email) {
+            @PathVariable String email,
+            @PathVariable String servico,
+            @PathVariable Double valorMin) {
 
-        Boolean res = this.usuarioService.ativarContaFuncionario(email);
+        Boolean res = this.usuarioService.ativarContaFuncionario(email,servico,valorMin);
 
         if (res == true) {
             return ResponseEntity.status(200).body(res);
@@ -142,15 +146,6 @@ public class UsuarioController {
             return ResponseEntity.status(404).build();
         }
 
-    }
-    //endregion
-
-    //region Ordenação
-    public boolean comparaLetra(String letra1, String letra2) {
-        if (letra1.charAt(0) > letra2.charAt(0)) {
-            return true;
-        }
-        return false;
     }
     //endregion
 }
