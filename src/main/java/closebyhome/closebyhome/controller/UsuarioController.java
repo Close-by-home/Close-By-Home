@@ -41,7 +41,7 @@ public class UsuarioController {
     //endregion
 
     //region Logar
-    @GetMapping("/logar")
+    @PostMapping("/logar")
     public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto novoUsuario) {
 
         UsuarioDto res = this.usuarioService.buscarUsuario(novoUsuario);

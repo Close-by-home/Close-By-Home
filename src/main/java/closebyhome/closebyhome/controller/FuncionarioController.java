@@ -24,12 +24,4 @@ public class FuncionarioController {
         return ResponseEntity.status(200).body(res);
     }
 
-    //COMENTEI ESSA FUNÇÃO PQ ALÉM DE ESTAR SEMPRE RETORNADO TRUE, ESTAVA CONFLITANDO COM O LISTAR FUNCIONARIOS ACIMA
-//    @GetMapping
-//    public Boolean entrar(){
-//
-//        Boolean res =true ;
-//
-//        return res;
-//    }
 }

@@ -1,9 +1,10 @@
 package closebyhome.closebyhome.models;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -16,15 +17,26 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "fk_codigo_condominio")
     private Condominio codigoCondominio;
-    @OneToMany
-    private List<Agenda> agenda;
+//    @OneToMany
+//    private List<Agenda> agenda;
+    @Size(max = 2)
     private String bloco;
     @Email
     private String email;
     private String telefone;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String nome;
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    @Size(min = 6, max = 14)
     private String senha;
     private Boolean funcionario;
+
+    @Size(max = 1)
+    private String sexo;
 
     @OneToOne(mappedBy = "idUsuario")
     private Funcionario func;
@@ -108,5 +120,11 @@ public class Usuario {
     public void setFuncionario(Boolean funcionario) {
         this.funcionario = funcionario;
     }
+    public String getSexo() {
+        return sexo;
+    }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 }

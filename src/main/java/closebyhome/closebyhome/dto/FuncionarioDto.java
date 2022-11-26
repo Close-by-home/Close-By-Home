@@ -52,29 +52,4 @@ public class FuncionarioDto {
         this.valorMinimo = valorMinimo;
     }
 
-    //pode Excluir???
-
-    //public Descricao getDescricao() {
-    //      return descricao;
-    //  }
-
-    //  public void setDescricao(Descricao descricao) {
-    //      this.descricao = descricao;
-    //   }
-
-    //public List<Agenda> getAgenda() {
-   //     return agenda;
-   // }
-
-   /// public void setAgenda(List<Agenda> agenda) {
-   //     this.agenda = agenda;
-  //  }
-
-  ///  public List<Data> getData() {
-   //     return data;
-  //  }
-
-   // public void setData(List<Data> data) {
-   //     this.data = data;
-   // }
 }
