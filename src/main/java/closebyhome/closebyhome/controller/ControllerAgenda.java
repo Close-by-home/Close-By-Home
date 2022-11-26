@@ -53,7 +53,7 @@ public class ControllerAgenda {
     }
 
     @GetMapping("/{idFuncionario}")
-    public ResponseEntity<List<AgendaDto>> getAgendaPorCpf(
+    public ResponseEntity<List<AgendaDto>> getAgendaPorId(
             @PathVariable int idFuncionario
     ) {
         List<AgendaDto> res = agendaService.buscarAgendaFuncionario(idFuncionario);
