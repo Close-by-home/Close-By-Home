@@ -2,7 +2,6 @@ package closebyhome.closebyhome.dto;
 
 import closebyhome.closebyhome.models.Usuario;
 
-import java.util.List;
 
 public class FuncionarioDto {
 
