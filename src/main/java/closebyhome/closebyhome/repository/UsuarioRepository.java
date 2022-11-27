@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findById(int id);
-    List<Usuario> findAllByCondominio(Optional condominio);
+    List<Usuario> findAllByCodigoCondominio(Optional condominio);
 
     Usuario findByCpf(String cpf);
 

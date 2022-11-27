@@ -10,7 +10,6 @@ import java.util.Optional;
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
       Funcionario findById(int id);
       List<Funcionario> findByNomeServico(String nome);
-      List<Funcionario> findAllByCondominio(Optional condominio);
 
 //    Funcionario findByUsuarioId(Integer id);
 }

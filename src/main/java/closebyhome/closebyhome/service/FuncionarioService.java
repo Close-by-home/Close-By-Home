@@ -33,12 +33,18 @@ public class FuncionarioService {
 
     public List<FuncionarioDto> buscarPorCondominio(Integer idCondominio) {
 
-        Optional<Funcionario> condominio = funcionarioRepository.findById(idCondominio);
-        List<Funcionario> listaFuncionario = funcionarioRepository.findAllByCondominio(condominio);
+        List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
 
         if (!listaFuncionario.isEmpty()) {
-            List<FuncionarioDto> listRes = listaFuncionario.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
-            return listRes;
+
+            List<Funcionario> listRes = new ArrayList<>();
+            for (int i = 0; i < listaFuncionario.size(); i++) {
+                if(listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getId()==idCondominio){
+                    listRes.add(listaFuncionario.get(i));
+                }
+            }
+            List<FuncionarioDto> listDto = listRes.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+            return listDto;
         }
 
         return null;

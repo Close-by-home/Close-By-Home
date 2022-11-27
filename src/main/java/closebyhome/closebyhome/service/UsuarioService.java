@@ -110,7 +110,7 @@ public class UsuarioService {
     public List<UsuarioDto> buscarPorCondominio(Integer idCondominio) {
 
         Optional<Condominio> condominio = condominioRepository.findById(idCondominio);
-        List<Usuario> listaUsuario = usuarioRepository.findAllByCondominio(condominio);
+        List<Usuario> listaUsuario = usuarioRepository.findAllByCodigoCondominio(condominio);
 
         if (!listaUsuario.isEmpty()) {
             List<UsuarioDto> listRes = listaUsuario.stream().map(UsuarioDtoFactory::toDto).collect(Collectors.toList());
