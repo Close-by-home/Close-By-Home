@@ -151,8 +151,9 @@ public class AgendaService {
         return null;
     }
 
-    public List<AgendaDto> buscaAgendaPorData(LocalDateTime data){
-        List<Agenda> lista = agendaRepository.findByData(data);
+    public List<AgendaDto> buscaAgendaPorData(String data){
+        LocalDateTime dataConvertida = LocalDateTime.parse(data);
+        List<Agenda> lista = agendaRepository.findByData(dataConvertida);
 
         if(!lista.isEmpty()){
             List<AgendaDto> resDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());

@@ -7,6 +7,7 @@ import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.models.Usuario;
+import closebyhome.closebyhome.repository.CondominioRepository;
 import closebyhome.closebyhome.repository.FuncionarioRepository;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private CondominioRepository condominioRepository;
 
 
     //region Cadastrar/Ativar
@@ -102,6 +105,19 @@ public class UsuarioService {
         usuarioDto.setTelefone(user.getTelefone());
 
         return usuarioDto;
+    }
+
+    public List<UsuarioDto> buscarPorCondominio(Integer idCondominio) {
+
+        Optional<Condominio> condominio = condominioRepository.findById(idCondominio);
+        List<Usuario> listaUsuario = usuarioRepository.findAllByCodigoCondominio(condominio);
+
+        if (!listaUsuario.isEmpty()) {
+            List<UsuarioDto> listRes = listaUsuario.stream().map(UsuarioDtoFactory::toDto).collect(Collectors.toList());
+            return listRes;
+        }
+
+        return null;
     }
 
     private Usuario buscarId(String email, String senha) {
