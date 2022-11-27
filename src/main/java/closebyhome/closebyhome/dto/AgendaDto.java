@@ -1,17 +1,13 @@
 package closebyhome.closebyhome.dto;
 
-import closebyhome.closebyhome.models.Funcionario;
-import closebyhome.closebyhome.models.Usuario;
-
-import java.time.LocalDate;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 public class AgendaDto {
     private FuncionarioAgendaDto func;
-
     private int codigoServico;
     private LocalDateTime data;
-
     private int notaServico;
     private String status;
 

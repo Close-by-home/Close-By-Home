@@ -14,6 +14,7 @@ public class AgendaDtoFactory {
         res.setFunc(funcionarioAgendaDto);
         res.setStatus(agendaDomain.getStatus());
         res.setNotaServico(agendaDomain.getNotaServico());
+        res.setCodigoServico(agendaDomain.getCodigoServico());
 
         return res;
     }

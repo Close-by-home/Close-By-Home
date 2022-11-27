@@ -1,5 +1,4 @@
 package closebyhome.closebyhome.models;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -22,8 +21,21 @@ public class Notificacao {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_funcionario")
-    private Funcionario func;
+    @JoinColumn(name = "fk_agenda")
+    private Agenda agenda;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario")
+    private Usuario usuario;
+    public Notificacao() {
+    }
+
+    public Notificacao(String titulo, String descricao, Agenda agenda) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.agenda = agenda;
+        this.usuario = agenda.getUser();
+    }
 
     public int getId() {
         return id;
@@ -49,11 +61,19 @@ public class Notificacao {
         this.descricao = descricao;
     }
 
-    public Funcionario getFunc() {
-        return func;
+    public Agenda getAgenda() {
+        return agenda;
     }
 
-    public void setFunc(Funcionario func) {
-        this.func = func;
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
