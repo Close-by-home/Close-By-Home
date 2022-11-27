@@ -4,8 +4,13 @@ import closebyhome.closebyhome.models.Condominio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import closebyhome.closebyhome.models.Usuario;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findById(int id);
+    List<Usuario> findAllByCondominio(Optional condominio);
+
     Usuario findByCpf(String cpf);
 
 

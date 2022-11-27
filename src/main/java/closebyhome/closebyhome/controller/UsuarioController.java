@@ -38,6 +38,16 @@ public class UsuarioController {
 
         return ResponseEntity.status(200).body(res);
     }
+    @GetMapping("{idCondominio}")
+    public ResponseEntity<List<UsuarioDto>> listarPorCondominio(@PathVariable Integer idCondominio) {
+        List<UsuarioDto> res = this.usuarioService.buscarPorCondominio(idCondominio);
+
+        if (res.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        return ResponseEntity.status(200).body(res);
+    }
     //endregion
 
     //region Logar

@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.FuncionarioDto;
+import closebyhome.closebyhome.dto.UsuarioDto;
 import closebyhome.closebyhome.service.FuncionarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,17 @@ public class FuncionarioController {
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
+        return ResponseEntity.status(200).body(res);
+    }
+
+    @GetMapping("{idCondominio}")
+    public ResponseEntity<List<FuncionarioDto>> listarPorCondominio(@PathVariable Integer idCondominio) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarPorCondominio(idCondominio);
+
+        if (res.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
         return ResponseEntity.status(200).body(res);
     }
 
