@@ -110,17 +110,17 @@ public class ControllerAgenda {
         res = agendaService.contarAvaliacoesPorFuncionario(id);
 
         if (res != null) {
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).body(res);
         }
         return ResponseEntity.status(204).build();
     }
 
     @GetMapping("buscaAvaliacaoPorData/{data}")
-    public ResponseEntity<Long> buscaAvaliacaoPorData(@PathVariable LocalDateTime data){
+    public ResponseEntity<List<AgendaDto>> buscaAvaliacaoPorData(@PathVariable String data){
         List<AgendaDto> res = agendaService.buscaAgendaPorData(data);
 
         if (res != null) {
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).body(res);
         }
         return ResponseEntity.status(204).build();
     }
