@@ -70,7 +70,7 @@ public class ControllerAgenda {
             @PathVariable int codigoServico
     ) {
         agendaService.mudarStatus(novoStauts, codigoServico);
-        return ResponseEntity.status(200).body("sucesso");
+        return ResponseEntity.status(201).body("sucesso");
     }
 
     //Retorna os serviços agendados por data em ordem decrescente, caso o empilhar seja true,
@@ -99,10 +99,30 @@ public class ControllerAgenda {
         res = agendaService.avaliarAgenda(nota, idUsuario, idAgenda);
 
         if (res != null) {
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(201).build();
         }
         return ResponseEntity.status(204).build();
 
+    }
+    @GetMapping("contarAvaliacoes/{id}")
+    public ResponseEntity<Long> contarAvaliacoes(@PathVariable Integer id){
+        Long res = null;
+        res = agendaService.contarAvaliacoesPorFuncionario(id);
+
+        if (res != null) {
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(204).build();
+    }
+
+    @GetMapping("buscaAvaliacaoPorData/{data}")
+    public ResponseEntity<Long> buscaAvaliacaoPorData(@PathVariable LocalDateTime data){
+        List<AgendaDto> res = agendaService.buscaAgendaPorData(data);
+
+        if (res != null) {
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(204).build();
     }
 
 }

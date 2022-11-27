@@ -141,4 +141,23 @@ public class AgendaService {
         }
         return null;
     }
+
+    public Long contarAvaliacoesPorFuncionario(Integer idFuncionario){
+        Long quantidadeAvaliacoes = agendaRepository.countById(idFuncionario);
+
+        if(quantidadeAvaliacoes >= 0){
+            return quantidadeAvaliacoes;
+        }
+        return null;
+    }
+
+    public List<AgendaDto> buscaAgendaPorData(LocalDateTime data){
+        List<Agenda> lista = agendaRepository.findByData(data);
+
+        if(!lista.isEmpty()){
+            List<AgendaDto> resDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
+            return resDto;
+        }
+        return null;
+    }
 }
