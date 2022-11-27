@@ -1,7 +1,9 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.AgendaDto;
+import closebyhome.closebyhome.models.Notificacao;
 import closebyhome.closebyhome.service.AgendaService;
+import closebyhome.closebyhome.service.NotificacaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +15,13 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/agenda")
-public class ControllerAgenda {
+public class AgendaController {
 
     @Autowired
     AgendaService agendaService;
+    @Autowired
+    NotificacaoService notificacaoService;
+
 
     @GetMapping
     public ResponseEntity<List<AgendaDto>> listar() {
@@ -36,6 +41,7 @@ public class ControllerAgenda {
             @RequestParam String data
     ) {
         AgendaDto res = agendaService.agendarServico(idFuncionario, cpfUsuario, LocalDateTime.parse(data));
+        agendaService.adicionarObservador(notificacaoService);
 
         return ResponseEntity.status(201).body(res);
     }
@@ -64,12 +70,13 @@ public class ControllerAgenda {
         return ResponseEntity.status(200).body(res);
     }
 
-    @PutMapping("atualizar-status/{novoStauts}/{codigoServico}")
+    @PutMapping("atualizar-status/{novoStatus}/{codigoServico}")
     public ResponseEntity<String> atualizarStatus(
-            @PathVariable String novoStauts,
+            @PathVariable String novoStatus,
             @PathVariable int codigoServico
     ) {
-        agendaService.mudarStatus(novoStauts, codigoServico);
+        agendaService.mudarStatus(novoStatus, codigoServico);
+
         return ResponseEntity.status(201).body("sucesso");
     }
 

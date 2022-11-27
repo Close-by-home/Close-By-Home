@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 public class NotificacaoDto {
 
+    @NotNull
+    private Integer id;
     @NotBlank
     @NotNull
     @NotEmpty
@@ -35,4 +37,11 @@ public class NotificacaoDto {
         this.descricao = descricao;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

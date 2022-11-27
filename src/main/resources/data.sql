@@ -52,4 +52,4 @@ insert
         agenda
         (codigo_servico,data,nota_servico,status,fk_codigo_funcionario,fk_id_funcionario)
     values
-    (1,'2014-01-13T17:09:42.411',5,'Finalizado',1,2);
+    (2,'2014-01-13T17:09:42.411',5,'Finalizado',1,2);
