@@ -1,28 +1,39 @@
 package closebyhome.closebyhome.dto;
 
-import closebyhome.closebyhome.models.Agenda;
-import closebyhome.closebyhome.models.Data;
-import closebyhome.closebyhome.models.Descricao;
 import closebyhome.closebyhome.models.Usuario;
 
-import java.util.List;
 
 public class FuncionarioDto {
 
     private String nomeServico;
-  //  private Descricao descricao;
+    private String nomeUsuario;
+    private String emailUsuario;
     private Double valorMinimo;
-    //private List<Agenda> agenda;
-   // private List<Data> data;
- //   private Usuario usuario;
+    private Usuario usuario;
 
- //   public Usuario getUsuario() {
-   //     return usuario;
-  //  }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-//    public void setUsuario(Usuario usuario) {
-   //     this.usuario = usuario;
-  //  }
+    public Usuario pegaUsuario() {
+        return usuario;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
 
     public String getNomeServico() {
         return nomeServico;
@@ -32,14 +43,6 @@ public class FuncionarioDto {
         this.nomeServico = nomeServico;
     }
 
-    //public Descricao getDescricao() {
-  //      return descricao;
-  //  }
-
-  //  public void setDescricao(Descricao descricao) {
-  //      this.descricao = descricao;
- //   }
-
     public Double getValorMinimo() {
         return valorMinimo;
     }
@@ -48,19 +51,4 @@ public class FuncionarioDto {
         this.valorMinimo = valorMinimo;
     }
 
-    //public List<Agenda> getAgenda() {
-   //     return agenda;
-   // }
-
-   /// public void setAgenda(List<Agenda> agenda) {
-   //     this.agenda = agenda;
-  //  }
-
-  ///  public List<Data> getData() {
-   //     return data;
-  //  }
-
-   // public void setData(List<Data> data) {
-   //     this.data = data;
-   // }
 }

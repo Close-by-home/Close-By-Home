@@ -39,4 +39,5 @@ public class CondominioController {
         return ResponseEntity.status(201).body(res);
     }
 
+
 }

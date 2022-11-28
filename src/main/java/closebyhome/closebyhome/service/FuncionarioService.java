@@ -1,18 +1,16 @@
 package closebyhome.closebyhome.service;
 
-import closebyhome.closebyhome.dto.FuncionarioDto;
-import closebyhome.closebyhome.dto.FuncionarioDtoFactory;
-import closebyhome.closebyhome.dto.UsuarioDto;
-import closebyhome.closebyhome.dto.UsuarioDtoFactory;
-import closebyhome.closebyhome.models.Agenda;
-import closebyhome.closebyhome.models.Data;
+import closebyhome.closebyhome.dto.*;
+import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,26 +18,71 @@ public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
-    public Boolean logar(){
 
-        return true;
+    public List<FuncionarioDto> buscarTodosFuncionarios() {
+        List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
+        List<FuncionarioDto> listRes = listaFuncionario.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        return listRes;
     }
-    public  Funcionario buscarFuncionario(int idFunc){
+
+    public Funcionario buscarFuncionario(int idFunc) {
         Funcionario res = funcionarioRepository.findById(idFunc);
         return res;
     }
-    public FuncionarioDto cadastrarFuncionario(FuncionarioDto funcionarioNovo,int id){
-        Usuario user = usuarioRepository.findById(id);
-        if(user.getFuncionario()) {
-            Funcionario resFun = new Funcionario(funcionarioNovo, user);
 
-            System.out.printf(resFun.getNomeServico());
-                funcionarioRepository.save(resFun);
+    public List<FuncionarioDto> buscarPorCondominio(Integer idCondominio) {
+
+        List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
+
+        if (!listaFuncionario.isEmpty()) {
+
+            List<Funcionario> listRes = new ArrayList<>();
+            for (int i = 0; i < listaFuncionario.size(); i++) {
+                if(listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getId()==idCondominio){
+                    listRes.add(listaFuncionario.get(i));
+                }
+            }
+            List<FuncionarioDto> listDto = listRes.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+            return listDto;
         }
-        return funcionarioNovo;
+
+        return null;
+    }
+
+    public List<FuncionarioDto> buscarFuncionarioPeloNome(String nome) {
+        List<Funcionario> lista = funcionarioRepository.findAll();
+        List<Funcionario> listaEncontrados = new ArrayList<>();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getIdUsuario().getNome().equals(nome)) {
+                listaEncontrados.add(lista.get(i));
+            }
+        }
+
+        List<FuncionarioDto> listRes = lista.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        return listRes;
+    }
+
+    public List<FuncionarioDto> buscarFuncionarioPeloServico(String servico) {
+        List<Funcionario> res = funcionarioRepository.findByNomeServico(servico);
+
+        List<FuncionarioDto> listRes = res.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        return listRes;
+    }
+
+    public List<FuncionarioDto> buscarFuncionarioPeloServicoEnome(String servico, String nome) {
+        List<Funcionario> lista = funcionarioRepository.findAll();
+        List<Funcionario> listaEncontrados = new ArrayList<>();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getNomeServico().equals(servico) && lista.get(i).getIdUsuario().getNome().equals(nome)) {
+                listaEncontrados.add(lista.get(i));
+            }
+        }
+
+        List<FuncionarioDto> listRes = lista.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        return listRes;
     }
 
 }

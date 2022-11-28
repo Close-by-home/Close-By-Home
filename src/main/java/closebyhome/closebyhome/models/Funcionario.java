@@ -1,6 +1,9 @@
 package closebyhome.closebyhome.models;
 
 import closebyhome.closebyhome.dto.FuncionarioDto;
+import closebyhome.closebyhome.dto.UsuarioDto;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,10 +30,14 @@ public class Funcionario {
     @JoinColumn(name="id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
 
-    public Funcionario(FuncionarioDto funcionarioDto, Usuario idUsuario) {
+    public Funcionario(
+            String servico,
+            Double valor,
+            Usuario idUsuario
+    ) {
 
-        this.nomeServico = funcionarioDto.getNomeServico();
-        this.valorMinimo = funcionarioDto.getValorMinimo();
+        this.nomeServico = servico;
+        this.valorMinimo = valor;
         this.agenda = new ArrayList<Agenda>();
         this.data = new ArrayList<Data>();
         this.idUsuario = idUsuario;
@@ -38,7 +45,6 @@ public class Funcionario {
     public Funcionario(){
         this.agenda = new ArrayList<Agenda>();
         this.data = new ArrayList<Data>();
-      //  this.descricao = null;
     };
     public String getNomeServico() {
         return nomeServico;
@@ -63,14 +69,6 @@ public class Funcionario {
     public void setNomeServico(String nomeServico) {
         this.nomeServico = nomeServico;
     }
-
-  // public Descricao getDescricao() {
-   //     return descricao;
-   // }
-
-//    public void setDescricao(Descricao descricao) {
-   //     this.descricao = descricao;
-  //  }
 
     public Double getValorMinimo() {
         return valorMinimo;

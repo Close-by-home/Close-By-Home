@@ -8,6 +8,7 @@ import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import closebyhome.closebyhome.service.CondominioService;
+import closebyhome.closebyhome.service.FuncionarioService;
 import closebyhome.closebyhome.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -324,7 +325,6 @@ public class UsuarioController {
             System.out.println(user);
         }
     }
-
 
 }
 
