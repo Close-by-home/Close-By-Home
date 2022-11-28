@@ -32,14 +32,21 @@ public class UsuarioController {
     @Autowired
     private CondominioService condominioService;
 
-    @Autowired
-    private static UsuarioRepository usuarioRepository;
-
     //region Listar
     @GetMapping
     public ResponseEntity<List<UsuarioDto>> listar() {
 
         List<UsuarioDto> res = this.usuarioService.buscar();
+
+        if (res.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        return ResponseEntity.status(200).body(res);
+    }
+    @GetMapping("{idCondominio}")
+    public ResponseEntity<List<UsuarioDto>> listarPorCondominio(@PathVariable Integer idCondominio) {
+        List<UsuarioDto> res = this.usuarioService.buscarPorCondominio(idCondominio);
 
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -79,6 +86,7 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Email ou senha invalidos");
         }
     }
+
     @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}/{repSenha}")
     public ResponseEntity<String> atualizarSenhaEsquicida(
             @PathVariable String codCondominio,
@@ -100,11 +108,13 @@ public class UsuarioController {
     //endregion
 
     //region Cadastrar e ativar perfil
-    @PutMapping("/ativar-perfil-funcionario/{email}")
+    @PutMapping("/ativar-perfil-funcionario/{email}/{servico}/{valorMin}")
     public ResponseEntity<Boolean> ativaConta(
-            @PathVariable String email) {
+            @PathVariable String email,
+            @PathVariable String servico,
+            @PathVariable Double valorMin) {
 
-        Boolean res = this.usuarioService.ativarContaFuncionario(email);
+        Boolean res = this.usuarioService.ativarContaFuncionario(email,servico,valorMin);
 
         if (res == true) {
             return ResponseEntity.status(200).body(res);
@@ -126,14 +136,18 @@ public class UsuarioController {
         else{
             return  ResponseEntity.status(404).body(res);
         }
+
+
+
     }
     //endregion
+
 
     //region CSV
     @GetMapping("/grava-arquivo-csv")
     public ResponseEntity< List<UsuarioDto>> grava(){
 
-       List<UsuarioDto> res = this.usuarioService.buscar();
+        List<UsuarioDto> res = this.usuarioService.buscar();
 //
 //        ListaObj<UsuarioDto> listaObjUsuarios = new ListaObj<UsuarioDto>(res.size());
         ListaObj<UsuarioDto> listaObjUsuarios = this.usuarioService.listaEmObj();
@@ -148,15 +162,6 @@ public class UsuarioController {
             return ResponseEntity.status(404).build();
         }
 
-    }
-    //endregion
-
-    //region Ordenação
-    public boolean comparaLetra(String letra1, String letra2) {
-        if (letra1.charAt(0) > letra2.charAt(0)) {
-            return true;
-        }
-        return false;
     }
     //endregion
 
