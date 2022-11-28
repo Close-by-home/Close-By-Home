@@ -25,9 +25,12 @@ public class Usuario {
     private String nome;
     private String senha;
     private Boolean funcionario;
+    private String sexo;
 
     @OneToOne(mappedBy = "idUsuario")
     private Funcionario func;
+
+
 
     public Funcionario getFunc() {
         return func;
@@ -109,4 +112,11 @@ public class Usuario {
         this.funcionario = funcionario;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 }

@@ -22,7 +22,7 @@ public class FuncionarioController {
     @GetMapping
     public Boolean entrar(){
 
-        Boolean res =true ;
+        Boolean res = true ;
 
         return res;
     }
