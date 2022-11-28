@@ -70,14 +70,18 @@ public class AgendaController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @PutMapping("atualizar-status/{novoStatus}/{codigoServico}")
-    public ResponseEntity<String> atualizarStatus(
+    @PutMapping("atualizar-status/{novoStatus}/{idAgenda}")
+    public ResponseEntity<Boolean> atualizarStatus(
             @PathVariable String novoStatus,
-            @PathVariable int codigoServico
+            @PathVariable int idAgenda
     ) {
-        agendaService.mudarStatus(novoStatus, codigoServico);
+        Boolean res = agendaService.mudarStatus(novoStatus, idAgenda);
 
-        return ResponseEntity.status(201).body("sucesso");
+        if(res){
+            return ResponseEntity.status(201).body(res);
+        }
+        return ResponseEntity.status(201).build();
+
     }
 
     //Retorna os serviços agendados por data em ordem decrescente, caso o empilhar seja true,

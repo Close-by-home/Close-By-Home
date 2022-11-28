@@ -20,8 +20,8 @@ public class Agenda {
 
     private LocalDateTime data;
     private int notaServico;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigoServico;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private int codigoServico;
     private String status;
 
     public Agenda( Funcionario func, Usuario user, LocalDateTime data, int notaServico, String status) {
@@ -35,13 +35,13 @@ public class Agenda {
     public Agenda() {
     }
 
-    public int getCodigoServico() {
-        return codigoServico;
-    }
-
-    public void setCodigoServico(int codigoServico) {
-        this.codigoServico = codigoServico;
-    }
+//    public int getCodigoServico() {
+//        return codigoServico;
+//    }
+//
+//    public void setCodigoServico(int codigoServico) {
+//        this.codigoServico = codigoServico;
+//    }
 
     public Usuario getUser() {
         return user;

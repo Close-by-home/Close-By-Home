@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 
-    Agenda findByCodigoServico(int codigoServico);
+    //    Agenda findByCodigoServico(int codigoServico);
     Agenda findByUser(Optional<Usuario> user);
 
     List<Agenda> findByUserCpf(String Cpf);

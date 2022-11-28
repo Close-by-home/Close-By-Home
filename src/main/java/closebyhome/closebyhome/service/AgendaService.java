@@ -9,6 +9,7 @@ import closebyhome.closebyhome.pilhaObj.PilhaObj;
 import closebyhome.closebyhome.repository.AgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class AgendaService{
+public class AgendaService {
 
     @Autowired
     AgendaRepository agendaRepository;
@@ -26,39 +27,39 @@ public class AgendaService{
     FuncionarioService funcionarioService;
     private final List<Observable> observadores = new ArrayList();
 
-    public List<AgendaDto> getAllAgenda(){
+    public List<AgendaDto> getAllAgenda() {
         List<Agenda> ret = agendaRepository.findAll();
         List<AgendaDto> listRes = ret.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
 
-        return  listRes;
+        return listRes;
     }
 
-    public AgendaDto agendarServico(int func,String user,LocalDateTime date){
+    public AgendaDto agendarServico(int func, String user, LocalDateTime date) {
 
         Usuario resUsuario = usuarioService.buscarUsuarioPorCpf(user);
-
         Funcionario funcionario = funcionarioService.buscarFuncionario(func);
         FuncionarioAgendaDto funcionarioAgendaDto = new FuncionarioAgendaDto(funcionario);
 
-        if(funcionario == null || resUsuario == null){
+        if (funcionario == null || resUsuario == null) {
             return null;
         }
 
-        AgendaDto res = new AgendaDto(funcionarioAgendaDto,date);
-        Agenda saveAgenda = new Agenda(funcionario,resUsuario,date, res.getNotaServico(), res.getStatus());
+        AgendaDto res = new AgendaDto(funcionarioAgendaDto, date);
+        Agenda saveAgenda = new Agenda(funcionario, resUsuario, date, res.getNotaServico(), res.getStatus());
         agendaRepository.save(saveAgenda);
         notificarObservadores(saveAgenda);
 
-        res.setCodigoServico(saveAgenda.getCodigoServico());
-        return  res;
+//        res.setCodigoServico(saveAgenda.getCodigoServico());
+        return res;
     }
 
-    public List<AgendaDto> buscarAgendaUsaurio(String cpf){
+    public List<AgendaDto> buscarAgendaUsaurio(String cpf) {
         List<Agenda> agendaList = agendaRepository.findByUserCpf(cpf);
         List<AgendaDto> listRes = agendaList.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
 
         return listRes;
     }
+
     public List<AgendaDto> buscarAgendaFuncionario(int idFuncCpf) {
         List<Agenda> agendaList = agendaRepository.findByFuncId(idFuncCpf);
         List<AgendaDto> listRes = agendaList.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
@@ -66,13 +67,16 @@ public class AgendaService{
         return listRes;
     }
 
-    public void mudarStatus(String novoStatus, int codigoAgenda){
-        Agenda  agenda = agendaRepository.findByCodigoServico(codigoAgenda);
-        agenda.setStatus(novoStatus);
+    public boolean mudarStatus(String novoStatus, int idAgenda) {
+        Optional<Agenda> agenda = agendaRepository.findById(idAgenda);
 
-        agendaRepository.save(agenda);
-
-        notificarObservadores(agenda);
+        if (agenda.isPresent()) {
+            agenda.get().setStatus(novoStatus);
+            agendaRepository.save(agenda.get());
+            notificarObservadores(agenda.get());
+            return true;
+        }
+        return false;
     }
 
     private void notificarObservadores(Agenda agenda) {
@@ -88,14 +92,15 @@ public class AgendaService{
     public void removerObservador(Observable obs) {
         observadores.remove(obs);
     }
-    public List<AgendaDto> buscaOrdenadoPorData(int id,boolean empilhar){
+
+    public List<AgendaDto> buscaOrdenadoPorData(int id, boolean empilhar) {
         List<Agenda> lista = agendaRepository.findAll();
 
         Agenda aux;
         for (int i = 0; i < lista.size(); i++) {
             for (int j = 0; j < lista.size(); j++) {
 
-                if (lista.get(i).getData().isAfter(lista.get(j).getData())){
+                if (lista.get(i).getData().isAfter(lista.get(j).getData())) {
 
                     aux = lista.get(i);
                     lista.set(i, lista.get(j));
@@ -105,24 +110,24 @@ public class AgendaService{
         }
         List<AgendaDto> listaDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
 
-        if(empilhar){
+        if (empilhar) {
             PilhaObj<AgendaDto> pilha = new PilhaObj(lista.size());
 
             for (int i = 0; !pilha.isFull(); i++) {
                 pilha.push(listaDto.get(i));
             }
             for (int i = 0; !pilha.isEmpty(); i++) {
-                listaDto.set(i,pilha.pop());
+                listaDto.set(i, pilha.pop());
             }
         }
 
         return listaDto;
     }
 
-    public AgendaDto avaliarAgenda(int nota,Integer idUsuario,Integer idAgenda){
+    public AgendaDto avaliarAgenda(int nota, Integer idUsuario, Integer idAgenda) {
         Optional<Agenda> agendaAvaliada = agendaRepository.findById(idAgenda);
 
-        if(agendaAvaliada.isPresent() && idUsuario == agendaAvaliada.get().getUser().getId()){
+        if (agendaAvaliada.isPresent() && idUsuario == agendaAvaliada.get().getUser().getId()) {
             agendaAvaliada.get().setNotaServico(nota);
             agendaRepository.save(agendaAvaliada.get());
 
@@ -136,20 +141,20 @@ public class AgendaService{
         return null;
     }
 
-    public Long contarAvaliacoesPorFuncionario(Integer idFuncionario){
+    public Long contarAvaliacoesPorFuncionario(Integer idFuncionario) {
         Long quantidadeAvaliacoes = agendaRepository.countById(idFuncionario);
 
-        if(quantidadeAvaliacoes >= 0){
+        if (quantidadeAvaliacoes >= 0) {
             return quantidadeAvaliacoes;
         }
         return null;
     }
 
-    public List<AgendaDto> buscaAgendaPorData(String data){
+    public List<AgendaDto> buscaAgendaPorData(String data) {
         LocalDateTime dataConvertida = LocalDateTime.parse(data);
         List<Agenda> lista = agendaRepository.findByData(dataConvertida);
 
-        if(!lista.isEmpty()){
+        if (!lista.isEmpty()) {
             List<AgendaDto> resDto = lista.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
             return resDto;
         }

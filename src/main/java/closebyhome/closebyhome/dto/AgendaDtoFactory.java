@@ -10,11 +10,12 @@ public class AgendaDtoFactory {
         AgendaDto res = new AgendaDto();
 
         FuncionarioAgendaDto funcionarioAgendaDto = new FuncionarioAgendaDto(agendaDomain.getFunc());
+        res.setId(agendaDomain.getId());
         res.setData(agendaDomain.getData());
         res.setFunc(funcionarioAgendaDto);
         res.setStatus(agendaDomain.getStatus());
         res.setNotaServico(agendaDomain.getNotaServico());
-        res.setCodigoServico(agendaDomain.getCodigoServico());
+//        res.setCodigoServico(agendaDomain.getCodigoServico());
 
         return res;
     }
