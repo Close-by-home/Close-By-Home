@@ -1,34 +1,41 @@
 package closebyhome.closebyhome.dto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 public class AgendaDto {
+    private Integer id;
     private FuncionarioAgendaDto func;
-    private int codigoServico;
+    //    private int codigoServico;
     private LocalDateTime data;
     private int notaServico;
     private String status;
 
-    public AgendaDto( FuncionarioAgendaDto func,LocalDateTime data) {
+    public AgendaDto(FuncionarioAgendaDto func, LocalDateTime data) {
         this.func = func;
         this.data = data;
         this.notaServico = 0;
         this.status = "Agendado";
-        this.codigoServico = 0;
+//        this.codigoServico = 0;
     }
 
     public AgendaDto() {
 
     }
 
-    public int getCodigoServico() {
-        return codigoServico;
+//    public int getCodigoServico() {
+//        return codigoServico;
+//    }
+//
+//    public void setCodigoServico(int codigoServico) {
+//        this.codigoServico = codigoServico;
+//    }
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setCodigoServico(int codigoServico) {
-        this.codigoServico = codigoServico;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public FuncionarioAgendaDto getFunc() {
