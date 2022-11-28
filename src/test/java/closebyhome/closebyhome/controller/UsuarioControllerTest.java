@@ -1,0 +1,82 @@
+package closebyhome.closebyhome.controller;
+
+import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioLogarDto;
+import closebyhome.closebyhome.models.Usuario;
+import closebyhome.closebyhome.repository.FuncionarioRepository;
+import closebyhome.closebyhome.repository.UsuarioRepository;
+import closebyhome.closebyhome.service.UsuarioService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
+class UsuarioControllerTest {
+
+    @Autowired
+    private UsuarioController controller;
+
+    @MockBean
+    private UsuarioRepository repository;
+
+    @Test
+    @DisplayName("Lista de usuarios vazia deve retornar status 204")
+    void listaDeUsuariosVazia(){
+        when(repository.findAll()).thenReturn(new ArrayList<>());
+
+        ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listar();
+
+        assertEquals(204, listaUsuarios.getStatusCodeValue());
+        assertNull(listaUsuarios.getBody());
+    }
+
+    @Test
+    @DisplayName("Retorna lista de usuarios e retorna o status 200")
+    void retornaListaDeUsuarios(){
+        when(repository.findAll()).thenReturn(List.of(
+               new Usuario()));
+
+        ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listar();
+
+        assertEquals(200, listaUsuarios.getStatusCodeValue());
+        assertTrue(listaUsuarios.getBody().size() > 0);
+
+    }
+
+//    @Test
+//    @DisplayName("Verificar se o usuario ja esta cadastrado, se sim, logar no sistema e retornar o status 200")
+//    void logarUsuarioExistente(){
+//        when(repository.existsById(anyInt())).thenReturn(true);
+//
+//       UsuarioLogarDto user = new UsuarioLogarDto();
+//
+//        assertThrows(ResponseStatusException.class, () ->{controller.logar(user);});
+//
+//    }
+
+    @Test
+    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 200")
+    void alterarSenhaRecebida(){
+        when(repository.findById(anyInt())).equals(true);
+
+        ResponseEntity<String> atualizarSenha = controller.atualizarSenha("anaalves@hotmail.com", "123cond", "ana123");
+
+        assertEquals(200, atualizarSenha.getStatusCodeValue());
+        assertNotNull(atualizarSenha.getBody());
+
+    }
+
+}
+
