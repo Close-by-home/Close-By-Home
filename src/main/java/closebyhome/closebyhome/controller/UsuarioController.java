@@ -88,17 +88,16 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}/{repSenha}")
+    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
     public ResponseEntity<String> atualizarSenhaEsquicida(
             @PathVariable String codCondominio,
             @PathVariable String email,
-            @PathVariable String novaSenha,
-            @PathVariable String repSenha
+            @PathVariable String novaSenha
 
     ) {
 
         Boolean senhaAtualizada = this.usuarioService.atualizarSenhaEsquecida(codCondominio, email,
-                novaSenha, repSenha);
+                novaSenha);
 
         if (senhaAtualizada == true) {
             return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
