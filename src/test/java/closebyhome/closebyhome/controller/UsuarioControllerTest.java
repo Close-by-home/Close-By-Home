@@ -56,19 +56,20 @@ class UsuarioControllerTest {
     }
 
 //    @Test
-//    @DisplayName("Verificar se o usuario ja esta cadastrado, se sim, logar no sistema e retornar o status 200")
-//    void logarUsuarioExistente(){
-//        when(repository.existsById(anyInt())).thenReturn(true);
+//    @DisplayName("Verificar se o usuario ja esta cadastrado, se não, retornar o status 404")
+//    void logarUsuarioInexistente(){
+//        when(repository.existsById(anyInt())).thenReturn(false);
 //
 //       UsuarioLogarDto user = new UsuarioLogarDto();
 //
 //        assertThrows(ResponseStatusException.class, () ->{controller.logar(user);});
 //
+//
 //    }
 
     @Test
-    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 404 Usuario não exite")
-    void alterarSenhaRecebida(){
+    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 404 Usuario não existe")
+    void naoAlterarSenhaRecebidaQuandoUsuarioInexistente(){
         Usuario user = new Usuario();
         when(repository.existsById(anyInt())).thenReturn(false);
 
@@ -78,6 +79,7 @@ class UsuarioControllerTest {
         // assertNotNull(controller.atualizarSenha.getBody());
 
     }
+
 
 }
 
