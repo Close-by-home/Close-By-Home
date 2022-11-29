@@ -67,14 +67,15 @@ class UsuarioControllerTest {
 //    }
 
     @Test
-    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 200")
+    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 404 Usuario não exite")
     void alterarSenhaRecebida(){
-        when(repository.findById(anyInt())).equals(true);
+        Usuario user = new Usuario();
+        when(repository.existsById(anyInt())).thenReturn(false);
 
-        ResponseEntity<String> atualizarSenha = controller.atualizarSenha("anaalves@hotmail.com", "123cond", "ana123");
+//        when(repository.findById(anyInt())).thenReturn(user);
 
-        assertEquals(200, atualizarSenha.getStatusCodeValue());
-        assertNotNull(atualizarSenha.getBody());
+        assertEquals(404, controller.atualizarSenha(user.getEmail(), user.getSenha(), "ana123").getStatusCodeValue());
+        // assertNotNull(controller.atualizarSenha.getBody());
 
     }
 
