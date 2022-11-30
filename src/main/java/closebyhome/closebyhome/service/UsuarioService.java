@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.dto.UsuarioDtoFactory;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
@@ -32,7 +33,7 @@ public class UsuarioService {
 
 
     //region Cadastrar/Ativar
-    public UsuarioDto cadastrar(UsuarioDto res, Condominio condominio) {
+    public UsuarioDtoCadastro cadastrar(UsuarioDtoCadastro res, Condominio condominio) {
         Usuario user = new Usuario();
 
         user.setFuncionario(false);
@@ -43,6 +44,8 @@ public class UsuarioService {
         user.setNome(res.getNome());
         user.setSenha(res.getSenha());
         user.setTelefone(res.getTelefone());
+        user.setImagem(res.getImagem());
+        user.setSexo("B");
         this.usuarioRepository.save(user);
 
         return res;
@@ -103,7 +106,9 @@ public class UsuarioService {
         usuarioDto.setNome(user.getNome());
         usuarioDto.setSenha(user.getSenha());
         usuarioDto.setTelefone(user.getTelefone());
-
+        usuarioDto.setImagem(user.getImagem());
+        usuarioDto.setFuncionario(user.getFuncionario());
+        usuarioDto.setCodigoCondominio(user.getCodigoCondominio().getCodigoCondominio());
         return usuarioDto;
     }
 
@@ -179,6 +184,7 @@ public class UsuarioService {
                 UsuarioDto user = listaUsuario.getElemento(i);
                 saida.format("%s;%s;%s;%s;%s;%s\n", user.getNome(), user.getCpf(), user.getTelefone(), user.getBloco(), user.getEmail(), user.getSenha());
             }
+
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar arquivo");
             deuRuim = true;

@@ -11,11 +11,11 @@ public class Agenda {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "fk_codigo_funcionario")
+    @JoinColumn(name = "fk_id_funcionario")
     private Funcionario func;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_funcionario")
+    @JoinColumn(name = "fk_id_usuario")
     private Usuario user;
 
     private LocalDateTime data;

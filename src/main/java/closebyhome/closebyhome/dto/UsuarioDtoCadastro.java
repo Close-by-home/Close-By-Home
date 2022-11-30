@@ -1,15 +1,10 @@
 package closebyhome.closebyhome.dto;
 
-import closebyhome.closebyhome.models.Condominio;
-import closebyhome.closebyhome.models.Funcionario;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
-public class UsuarioDto {
+public class UsuarioDtoCadastro {
 
     @CPF
     private String cpf;
@@ -19,18 +14,20 @@ public class UsuarioDto {
     private String telefone;
     private String nome;
     private String senha;
-    private String codigoCondominio;
     private String imagem;
-    private Boolean funcionario;
 
+    public UsuarioDtoCadastro(String linha) {
+        String[] values = linha.split(";");
 
-    public String getCodigoCondominio() {
-        return codigoCondominio;
+        this.nome = values[0];
+        this.cpf = values[1];
+        this.telefone = values[2];
+        this.bloco = values[3];
+        this.email = values[4];
+        this.senha = values[5];
     }
 
-    public void setCodigoCondominio(String codigoCondominio) {
-        this.codigoCondominio = codigoCondominio;
-    }
+    public UsuarioDtoCadastro(){}
 
     public String getImagem() {
         return imagem;
@@ -40,13 +37,6 @@ public class UsuarioDto {
         this.imagem = imagem;
     }
 
-    public Boolean getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Boolean funcionario) {
-        this.funcionario = funcionario;
-    }
 
     public String getCpf() {
         return cpf;

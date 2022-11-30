@@ -5,6 +5,7 @@ import closebyhome.closebyhome.dto.CondominioDto;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 public class Condominio {
@@ -23,12 +24,15 @@ public class Condominio {
     private int quatidadeDeBlocos;
     private String sindico;
     private String emailSindico;
-    private String telefoneSindico;
 
     public Condominio(CondominioDto condominioDto) {
-
+        Random gerador = new Random();
+        int numeroAleatororio = gerador.nextInt();
+        if(numeroAleatororio < 0){
+            numeroAleatororio = numeroAleatororio * -1;
+        }
         this.cnpj = condominioDto.getCnpj();
-        this.codigoCondominio = condominioDto.getCodigoCondominio();
+        this.codigoCondominio = String.valueOf(numeroAleatororio);
         this.cep = condominioDto.getCep();
         this.telefone = condominioDto.getTelefone();
         this.usuarios =  new ArrayList<Usuario>();
@@ -36,7 +40,7 @@ public class Condominio {
         this.quatidadeDeBlocos = condominioDto.getQuatidadeDeBlocos();
         this.sindico = condominioDto.getSindico();
         this.emailSindico = condominioDto.getEmailSindico();
-        this.telefoneSindico = condominioDto.getTelefoneSindico();
+
     }
 
     public Condominio() {
@@ -122,11 +126,5 @@ public class Condominio {
         this.emailSindico = emailSindico;
     }
 
-    public String getTelefoneSindico() {
-        return telefoneSindico;
-    }
 
-    public void setTelefoneSindico(String telefoneSindico) {
-        this.telefoneSindico = telefoneSindico;
-    }
 }

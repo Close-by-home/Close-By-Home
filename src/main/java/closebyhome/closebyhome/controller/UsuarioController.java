@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
@@ -123,12 +124,12 @@ public class UsuarioController {
         }
     }
     @PostMapping("/cadastrar/{idCondominio}")
-    public ResponseEntity<UsuarioDto> cadastrar(
-            @RequestBody @Valid UsuarioDto novoUsuario,
+    public ResponseEntity<UsuarioDtoCadastro> cadastrar(
+            @RequestBody @Valid UsuarioDtoCadastro novoUsuario,
             @PathVariable String idCondominio
     ) {
         Condominio codigo = this.condominioService.buscarCondominio(idCondominio);
-        UsuarioDto res = new UsuarioDto();
+        UsuarioDtoCadastro res = new UsuarioDtoCadastro();
         if(codigo != null){
             res = this.usuarioService.cadastrar(novoUsuario,codigo);
             return ResponseEntity.status(201).body(res);

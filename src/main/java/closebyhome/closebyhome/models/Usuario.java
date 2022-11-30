@@ -37,7 +37,7 @@ public class Usuario {
 
     @Size(max = 1)
     private String sexo;
-
+    private String imagem;
     @OneToOne(mappedBy = "idUsuario")
     private Funcionario func;
 
@@ -126,5 +126,13 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }
