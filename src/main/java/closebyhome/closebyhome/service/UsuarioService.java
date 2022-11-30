@@ -33,7 +33,7 @@ public class UsuarioService {
 
 
     //region Cadastrar/Ativar
-    public UsuarioDtoCadastro cadastrar(UsuarioDtoCadastro res, Condominio condominio) {
+    public UsuarioDto cadastrar(UsuarioDtoCadastro res, Condominio condominio) {
         Usuario user = new Usuario();
 
         user.setFuncionario(false);
@@ -48,7 +48,8 @@ public class UsuarioService {
         user.setSexo("B");
         this.usuarioRepository.save(user);
 
-        return res;
+        UsuarioDto resFinal = new UsuarioDto(res,user);
+        return resFinal;
     }
 
     public Boolean ativarContaFuncionario(String email, String servico, Double valor) {
@@ -142,6 +143,7 @@ public class UsuarioService {
         usuarioDto.setImagem(user.getImagem());
         usuarioDto.setFuncionario(user.getFuncionario());
         usuarioDto.setCodigoCondominio(user.getCodigoCondominio().getCodigoCondominio());
+
         return usuarioDto;
     }
 

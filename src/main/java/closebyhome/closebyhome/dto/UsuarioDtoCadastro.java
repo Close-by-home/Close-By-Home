@@ -25,6 +25,8 @@ public class UsuarioDtoCadastro {
         this.bloco = values[3];
         this.email = values[4];
         this.senha = values[5];
+        this.imagem = "";
+
     }
 
     public UsuarioDtoCadastro(){}

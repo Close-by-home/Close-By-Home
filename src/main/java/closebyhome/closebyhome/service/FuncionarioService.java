@@ -19,6 +19,8 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    @Autowired
+    private CondominioRepository condominioRepository;
 
     public List<FuncionarioDto> buscarTodosFuncionarios() {
         List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
@@ -31,15 +33,16 @@ public class FuncionarioService {
         return res;
     }
 
-    public List<FuncionarioDto> buscarPorCondominio(Integer idCondominio) {
-
+    public List<FuncionarioDto> buscarPorCondominio(String codigoCondominio) {
+        Condominio condominio = condominioRepository.findByCodigoCondominio(codigoCondominio);
         List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
+        System.out.println(condominio.getId());
 
         if (!listaFuncionario.isEmpty()) {
 
             List<Funcionario> listRes = new ArrayList<>();
             for (int i = 0; i < listaFuncionario.size(); i++) {
-                if(listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getId()==idCondominio){
+                if(listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getId()== condominio.getId()){
                     listRes.add(listaFuncionario.get(i));
                 }
             }

@@ -16,6 +16,9 @@ public class UsuarioDtoFactory {
         usuarioDto.setNome(usuarioDomain.getNome());
         usuarioDto.setSenha(usuarioDomain.getSenha());
         usuarioDto.setTelefone(usuarioDomain.getTelefone());
+        usuarioDto.setCodigoCondominio(usuarioDomain.getCodigoCondominio().getCodigoCondominio());
+        usuarioDto.setImagem(usuarioDomain.getImagem());
+        usuarioDto.setFuncionario(usuarioDomain.getFuncionario());
         return usuarioDto;
     }
 
