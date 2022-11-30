@@ -55,7 +55,7 @@ class UsuarioControllerTest {
     @DisplayName("Retorna lista de usuarios e retorna o status 200")
     void retornaListaDeUsuarios(){
         when(repository.findAll()).thenReturn(List.of(
-               new Usuario()));
+                new Usuario()));
 
         ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listar();
 
@@ -64,15 +64,39 @@ class UsuarioControllerTest {
 
     }
 
+    @Test
+    @DisplayName("Listar por condominio, porém lista vazia deve retornar o status 204")
+    void listarPorCondominioVazia(){
+        when(repository.findAll()).thenReturn(new ArrayList<>());
+
+        ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listarPorCondominio(1);
+
+        assertEquals(204, listaUsuarios.getStatusCodeValue());
+        assertNull(listaUsuarios.getBody());
+    }
+
+    @Test
+    @DisplayName("Listar por condominio e retornar o status 200")
+    void listarPorCondominio(){
+        when(repository.findAll()).thenReturn(List.of(
+                new Usuario(),
+                new Usuario()));
+
+        ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listarPorCondominio(1);
+
+        assertEquals(200, listaUsuarios.getStatusCodeValue());
+        assertTrue(listaUsuarios.getBody().size() > 0);
+
+    }
+
+
 //    @Test
 //    @DisplayName("Verificar se o usuario ja esta cadastrado, se não, retornar o status 404")
 //    void logarUsuarioInexistente(){
-//        when(repository.existsById(anyInt())).thenReturn(false);
+//        when(repository.findByEmailAndSenhaAndCodigoCondominioCodigoCondominio("ana@hotmail.com", "senha123", "1"))
+//                .equals(true);
 //
-//       UsuarioLogarDto user = new UsuarioLogarDto();
-//
-//        assertThrows(ResponseStatusException.class, () ->{controller.logar(user);});
-//
+//    assertEquals(200, controller.logar(""));
 //
 //    }
 
@@ -97,6 +121,31 @@ class UsuarioControllerTest {
 
     }
 
+    @Test
+    @DisplayName("Ativar perfil de funcionario e retornar status 200")
+    void ativarFuncionario(){
+        when(service.ativarContaFuncionario("ana@hotmail.com", "manicure", 45.00))
+                .thenReturn(true);
+
+        assertEquals(200, controller.ativaConta("ana@hotmail.com", "manicure", 45.00).getStatusCodeValue());
+    }
+
+    @Test
+    @DisplayName("Não ativar perfil com email invalido e retornar status 404")
+    void ativarFuncionarioEmailInvalido(){
+        when(service.ativarContaFuncionario("ana@hotmail.com", "manicure", 45.00))
+                .thenReturn(true);
+
+        assertEquals(404, controller.ativaConta("laura@hotmail.com", "manicure", 45.00).getStatusCodeValue());
+    }
+
+//    @Test
+//    @DisplayName("Cadastrar usuario e retonar status 201")
+//    void cadastrarUsuario(){
+//        when(serviceC.buscarCondominioPeloCodigo("1"))
+//                .thenReturn(new Condominio());
+//
+//    }
 
 }
 
