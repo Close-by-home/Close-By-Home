@@ -75,7 +75,34 @@ public class UsuarioService {
         }
         return false;
     }
+    public Boolean atualizarEmail(String cpf,String email,String novoEmail){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setEmail(novoEmail);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 
+    public Boolean atualizarImagem(String cpf,String email,String novaImagem){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setImagem(novaImagem);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+    public Boolean atualizarNumero(String cpf,String email,String novoNumero){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setTelefone(novoNumero);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
     public Boolean atualizarSenhaEsquecida(String email, String codCondominio,
                                            String novaSenha) {
 
@@ -191,6 +218,7 @@ public class UsuarioService {
         } finally {
             saida.close();
             try {
+
                 arq.close();
             } catch (IOException erro) {
                 System.out.println("Erro ao fechar o arquivo");

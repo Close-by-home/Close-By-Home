@@ -80,10 +80,12 @@ public class CondominioController {
         return ResponseEntity.status(200).build();
     }
 
-    @GetMapping(value = "/arquivo-exemplo", consumes = "multipart/form-data")
-    public ResponseEntity<Byte[]> download(){
-        Byte[] arquivo = new Byte[1];
-        ListaObj<UsuarioDto> listaObjUsuarios = this.usuarioService.listaEmObj();
-        return ResponseEntity.status(200).body(arquivo);
+    @GetMapping(value = "/arquivo-exemplo",produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    public ResponseEntity<byte[]> download(){
+        String teste = "NOME;CPF;TELEFONE;BLOCO;EMAIL" +"\n" +
+                "usuario;9999999999;11999999999;B9;usuario@gmail.com";
+        byte[] arquivo = teste.getBytes();
+
+        return ResponseEntity.status(200).header("content-disposition", "attachment; filename=\"arquivo_exemplo.csv\"").body(arquivo);
     }
 }

@@ -166,5 +166,45 @@ public class UsuarioController {
     }
     //endregion
 
+    @PutMapping("atualizar/email/{cpf}/{email}/{novoEmail}")
+    public ResponseEntity<String> atualizarEmail(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novoEmail
+    ){
+        Boolean res = usuarioService.atualizarEmail(cpf, email, novoEmail);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
+
+    @PutMapping("atualizar/imagem/{cpf}/{email}/{novoEmail}")
+    public ResponseEntity<String> atualizarImagem(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novaImagem
+    ){
+        Boolean res = usuarioService.atualizarImagem(cpf, email, novaImagem);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
+    @PutMapping("atualizar/telefone/{cpf}/{email}/{novoNumero}")
+    public ResponseEntity<String> atualizarNumero(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novoNumero
+    ){
+        Boolean res = usuarioService.atualizarImagem(cpf, email, novoNumero);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
 }
 
