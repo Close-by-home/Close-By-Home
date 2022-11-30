@@ -16,7 +16,7 @@ public class CondominioDto {
     private int quatidadeDeBlocos;
     private String sindico;
     private String emailSindico;
-    private String telefoneSindico;
+
 
     public String getCnpj() {
         return cnpj;
@@ -30,9 +30,10 @@ public class CondominioDto {
         return codigoCondominio;
     }
 
-    public void setCodigoCondominio(String codigoCondominio) {
-        this.codigoCondominio = codigoCondominio;
-    }
+//    public void setCodigoCondominio(String codigoCondominio) {
+//        this.codigoCondominio = codigoCondominio;
+//    }
+
 
     public String getCep() {
         return cep;
@@ -82,11 +83,5 @@ public class CondominioDto {
         this.emailSindico = emailSindico;
     }
 
-    public String getTelefoneSindico() {
-        return telefoneSindico;
-    }
 
-    public void setTelefoneSindico(String telefoneSindico) {
-        this.telefoneSindico = telefoneSindico;
-    }
 }

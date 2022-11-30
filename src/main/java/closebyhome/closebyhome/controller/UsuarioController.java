@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
@@ -122,15 +123,17 @@ public class UsuarioController {
             return ResponseEntity.status(404).body(res);
         }
     }
+
     @PostMapping("/cadastrar/{codigoCondominio}")
-    public ResponseEntity<UsuarioDto> cadastrar(
-            @RequestBody @Valid UsuarioDto novoUsuario,
+    public ResponseEntity<UsuarioDtoCadastro> cadastrar(
+            @RequestBody @Valid UsuarioDtoCadastro novoUsuario,
             @PathVariable String codigoCondominio
     ) {
         Condominio condominio = this.condominioService.buscarCondominioPeloCodigo(codigoCondominio);
-        UsuarioDto res = new UsuarioDto();
+        UsuarioDtoCadastro res = new UsuarioDtoCadastro();
         if(condominio != null){
             res = this.usuarioService.cadastrar(novoUsuario,condominio);
+
             return ResponseEntity.status(201).body(res);
         }
         else{
@@ -165,5 +168,45 @@ public class UsuarioController {
     }
     //endregion
 
+    @PutMapping("atualizar/email/{cpf}/{email}/{novoEmail}")
+    public ResponseEntity<String> atualizarEmail(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novoEmail
+    ){
+        Boolean res = usuarioService.atualizarEmail(cpf, email, novoEmail);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
+
+    @PutMapping("atualizar/imagem/{cpf}/{email}/{novoEmail}")
+    public ResponseEntity<String> atualizarImagem(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novaImagem
+    ){
+        Boolean res = usuarioService.atualizarImagem(cpf, email, novaImagem);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
+    @PutMapping("atualizar/telefone/{cpf}/{email}/{novoNumero}")
+    public ResponseEntity<String> atualizarNumero(
+            @PathVariable String cpf,
+            @PathVariable String email,
+            @PathVariable String novoNumero
+    ){
+        Boolean res = usuarioService.atualizarImagem(cpf, email, novoNumero);
+        if (res) {
+            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+        } else {
+            return ResponseEntity.status(404).body("Email ou cpf invalidos");
+        }
+    }
 }
 

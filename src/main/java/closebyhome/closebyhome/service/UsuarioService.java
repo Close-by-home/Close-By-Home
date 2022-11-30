@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.dto.UsuarioDtoFactory;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.listaObj.ListaObj;
@@ -32,7 +33,7 @@ public class UsuarioService {
 
 
     //region Cadastrar/Ativar
-    public UsuarioDto cadastrar(UsuarioDto res, Condominio condominio) {
+    public UsuarioDtoCadastro cadastrar(UsuarioDtoCadastro res, Condominio condominio) {
         Usuario user = new Usuario();
 
         user.setFuncionario(false);
@@ -43,9 +44,10 @@ public class UsuarioService {
         user.setNome(res.getNome());
         user.setSenha(res.getSenha());
         user.setTelefone(res.getTelefone());
-        System.out.println("Salvando o usuário : "+user.getEmail());
-        Usuario resTeste = usuarioRepository.save(user);
-        System.out.println(resTeste.getEmail());
+        user.setImagem(res.getImagem());
+        user.setSexo("B");
+        this.usuarioRepository.save(user);
+
         return res;
     }
 
@@ -65,7 +67,6 @@ public class UsuarioService {
     public Boolean atualizarSenha(String email, String senhaAtual, String novaSenha) {
 
         Usuario usuario = buscarUsuarioPorEmailESenha(email, senhaAtual);
-        System.out.println("PESQUISANDO USUARIO AAAAAAAAAAAAAA");
         if (usuario != null) {
             System.out.println("Usuario encontrado");
             usuario.setSenha(novaSenha);
@@ -73,10 +74,40 @@ public class UsuarioService {
 
             return true;
         }
-        System.out.println("Usuario não encontrado");
 
         return false;
     }
+    
+    public Boolean atualizarEmail(String cpf,String email,String novoEmail){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setEmail(novoEmail);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean atualizarImagem(String cpf,String email,String novaImagem){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setImagem(novaImagem);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+    
+    public Boolean atualizarNumero(String cpf,String email,String novoNumero){
+        Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
+        if(user != null){
+            user.setTelefone(novoNumero);
+            usuarioRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
 
 //    public Boolean atualizarSenhaEsquecida(String email, String codCondominio,
 //                                           String novaSenha) {
@@ -108,7 +139,9 @@ public class UsuarioService {
         usuarioDto.setNome(user.getNome());
         usuarioDto.setSenha(user.getSenha());
         usuarioDto.setTelefone(user.getTelefone());
-
+        usuarioDto.setImagem(user.getImagem());
+        usuarioDto.setFuncionario(user.getFuncionario());
+        usuarioDto.setCodigoCondominio(user.getCodigoCondominio().getCodigoCondominio());
         return usuarioDto;
     }
 
@@ -187,12 +220,14 @@ public class UsuarioService {
                 UsuarioDto user = listaUsuario.getElemento(i);
                 saida.format("%s;%s;%s;%s;%s;%s\n", user.getNome(), user.getCpf(), user.getTelefone(), user.getBloco(), user.getEmail(), user.getSenha());
             }
+
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar arquivo");
             deuRuim = true;
         } finally {
             saida.close();
             try {
+
                 arq.close();
             } catch (IOException erro) {
                 System.out.println("Erro ao fechar o arquivo");
