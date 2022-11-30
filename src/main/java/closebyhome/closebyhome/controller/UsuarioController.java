@@ -82,29 +82,29 @@ public class UsuarioController {
         Boolean senhaAtualizada = this.usuarioService.atualizarSenha(email, senhaAtual, novaSenha);
 
         if (senhaAtualizada == true) {
-            return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
+            return ResponseEntity.status(201).body("Senha atualizada com sucesso!");
         } else {
-            return ResponseEntity.status(404).body("Email ou senha invalidos");
+            return ResponseEntity.status(204).body("Email ou senha invalidos");
         }
     }
 
-    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
-    public ResponseEntity<String> atualizarSenhaEsquicida(
-            @PathVariable String codCondominio,
-            @PathVariable String email,
-            @PathVariable String novaSenha
-
-    ) {
-
-        Boolean senhaAtualizada = this.usuarioService.atualizarSenhaEsquecida(codCondominio, email,
-                novaSenha);
-
-        if (senhaAtualizada == true) {
-            return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
-        } else {
-            return ResponseEntity.status(404).body("Email ou senha invalidos");
-        }
-    }
+//    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
+//    public ResponseEntity<String> atualizarSenhaEsquicida(
+//            @PathVariable String codCondominio,
+//            @PathVariable String email,
+//            @PathVariable String novaSenha
+//
+//    ) {
+//
+//        Boolean senhaAtualizada = this.usuarioService.atualizarSenhaEsquecida(codCondominio, email,
+//                novaSenha);
+//
+//        if (senhaAtualizada == true) {
+//            return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
+//        } else {
+//            return ResponseEntity.status(404).body("Email ou senha invalidos");
+//        }
+//    }
     //endregion
 
     //region Cadastrar e ativar perfil
@@ -122,19 +122,19 @@ public class UsuarioController {
             return ResponseEntity.status(404).body(res);
         }
     }
-    @PostMapping("/cadastrar/{idCondominio}")
+    @PostMapping("/cadastrar/{codigoCondominio}")
     public ResponseEntity<UsuarioDto> cadastrar(
             @RequestBody @Valid UsuarioDto novoUsuario,
-            @PathVariable String idCondominio
+            @PathVariable String codigoCondominio
     ) {
-        Condominio codigo = this.condominioService.buscarCondominio(idCondominio);
+        Condominio condominio = this.condominioService.buscarCondominioPeloCodigo(codigoCondominio);
         UsuarioDto res = new UsuarioDto();
-        if(codigo != null){
-            res = this.usuarioService.cadastrar(novoUsuario,codigo);
+        if(condominio != null){
+            res = this.usuarioService.cadastrar(novoUsuario,condominio);
             return ResponseEntity.status(201).body(res);
         }
         else{
-            return  ResponseEntity.status(404).body(res);
+            return  ResponseEntity.status(204).body(res);
         }
 
 

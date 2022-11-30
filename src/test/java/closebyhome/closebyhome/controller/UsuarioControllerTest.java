@@ -1,25 +1,29 @@
 package closebyhome.closebyhome.controller;
 
+import closebyhome.closebyhome.dto.CondominioDto;
 import closebyhome.closebyhome.dto.UsuarioDto;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
+import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.FuncionarioRepository;
 import closebyhome.closebyhome.repository.UsuarioRepository;
+import closebyhome.closebyhome.service.CondominioService;
 import closebyhome.closebyhome.service.UsuarioService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -27,6 +31,11 @@ class UsuarioControllerTest {
 
     @Autowired
     private UsuarioController controller;
+    @Autowired
+    @MockBean
+    private UsuarioService service;
+    @Autowired
+    private CondominioService serviceC;
 
     @MockBean
     private UsuarioRepository repository;
@@ -68,15 +77,23 @@ class UsuarioControllerTest {
 //    }
 
     @Test
-    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 404 Usuario não existe")
+    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 204 Usuario não existe")
     void naoAlterarSenhaRecebidaQuandoUsuarioInexistente(){
-        Usuario user = new Usuario();
-        when(repository.existsById(anyInt())).thenReturn(false);
+        when(service.atualizarSenha("leandro@gmail.com", "senha123", "senha321")
+        ).thenReturn(true);
 
-//        when(repository.findById(anyInt())).thenReturn(user);
 
-        assertEquals(404, controller.atualizarSenha(user.getEmail(), user.getSenha(), "ana123").getStatusCodeValue());
-        // assertNotNull(controller.atualizarSenha.getBody());
+        assertEquals(204, controller.atualizarSenha("ana@gmail.com", "senha123", "senha321").getStatusCodeValue());
+
+    }
+
+    @Test
+    @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 201. Usuario existente")
+    void alterarSenhaRecebidaQuandoUsuarioExistente(){
+        when(service.atualizarSenha("leandro@gmail.com", "senha123", "senha321")
+        ).thenReturn(true);
+
+        assertEquals(201, controller.atualizarSenha("leandro@gmail.com", "senha123", "senha321").getStatusCodeValue());
 
     }
 
