@@ -129,9 +129,9 @@ public class UsuarioController {
             @RequestBody @Valid UsuarioDtoCadastro novoUsuario,
             @PathVariable String codigoCondominio
     ) {
-        Condominio condominio = this.condominioService.buscarCondominio(codigoCondominio);
+        Condominio condominio = this.condominioService.buscarCondominioPeloCodigo(codigoCondominio);
         UsuarioDtoCadastro res = new UsuarioDtoCadastro();
-        if(codigo != null){
+        if(condominio != null){
             res = this.usuarioService.cadastrar(novoUsuario,condominio);
 
             return ResponseEntity.status(201).body(res);
