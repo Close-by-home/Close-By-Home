@@ -19,7 +19,6 @@ public class Usuario {
     private Condominio codigoCondominio;
 //    @OneToMany
 //    private List<Agenda> agenda;
-    @Size(max = 2)
     private String bloco;
     @Email
     private String email;

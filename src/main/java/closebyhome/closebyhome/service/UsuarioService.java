@@ -66,15 +66,18 @@ public class UsuarioService {
     //region Senhas
     public Boolean atualizarSenha(String email, String senhaAtual, String novaSenha) {
 
-        Usuario usuario = buscarId(email, senhaAtual);
+        Usuario usuario = buscarUsuarioPorEmailESenha(email, senhaAtual);
         if (usuario != null) {
+            System.out.println("Usuario encontrado");
             usuario.setSenha(novaSenha);
             usuarioRepository.save(usuario);
 
             return true;
         }
+
         return false;
     }
+    
     public Boolean atualizarEmail(String cpf,String email,String novoEmail){
         Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
         if(user != null){
@@ -94,6 +97,7 @@ public class UsuarioService {
         }
         return false;
     }
+    
     public Boolean atualizarNumero(String cpf,String email,String novoNumero){
         Usuario user = usuarioRepository.findByCpfAndEmail(cpf,email);
         if(user != null){
@@ -103,18 +107,20 @@ public class UsuarioService {
         }
         return false;
     }
-    public Boolean atualizarSenhaEsquecida(String email, String codCondominio,
-                                           String novaSenha) {
 
-        Usuario usuario = buscarId(email, codCondominio);
-        if (usuario != null ) {
-            usuario.setSenha(novaSenha);
-            usuarioRepository.save(usuario);
 
-            return true;
-        }
-        return false;
-    }
+//    public Boolean atualizarSenhaEsquecida(String email, String codCondominio,
+//                                           String novaSenha) {
+//
+//        Usuario usuario = buscarUsuarioPorEmailESenha(email, senha);
+//        if (usuario != null ) {
+//            usuario.setSenha(novaSenha);
+//            usuarioRepository.save(usuario);
+//
+//            return true;
+//        }
+//        return false;
+//    }
     //endregion
 
     //region Buscar
@@ -152,11 +158,14 @@ public class UsuarioService {
         return null;
     }
 
-    private Usuario buscarId(String email, String senha) {
+    private Usuario buscarUsuarioPorEmailESenha(String email, String senha) {
         List<Usuario> listaUsuario = usuarioRepository.findAll();
+        System.out.println("Chegou na busca por email e senha");
+        System.out.println(listaUsuario);
         for (Usuario user : listaUsuario) {
+            System.out.println("Encontrou um item");
             if (email.equals(user.getEmail()) && senha.equals(user.getSenha())) {
-
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
                 return user;
             }
         }
