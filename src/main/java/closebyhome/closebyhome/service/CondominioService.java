@@ -26,7 +26,7 @@ public class CondominioService {
         return res;
     }
 
-    public Condominio buscarCondominio(String codigoCondominio){
+    public Condominio buscarCondominioPeloCodigo(String codigoCondominio){
 
         Condominio listaCondominio = condominioRepository.findByCodigoCondominio(codigoCondominio);
         return listaCondominio;
