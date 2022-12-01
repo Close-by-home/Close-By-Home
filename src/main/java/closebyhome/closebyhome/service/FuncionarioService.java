@@ -7,6 +7,7 @@ import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,15 +35,14 @@ public class FuncionarioService {
     }
 
     public List<FuncionarioDto> buscarPorCondominio(String codigoCondominio) {
-        Condominio condominio = condominioRepository.findByCodigoCondominio(codigoCondominio);
         List<Funcionario> listaFuncionario = funcionarioRepository.findAll();
-        System.out.println(condominio.getId());
 
         if (!listaFuncionario.isEmpty()) {
 
             List<Funcionario> listRes = new ArrayList<>();
             for (int i = 0; i < listaFuncionario.size(); i++) {
-                if(listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getId()== condominio.getId()){
+                String codigoAtual =listaFuncionario.get(i).getIdUsuario().getCodigoCondominio().getCodigoCondominio().toLowerCase();
+                if(codigoAtual.equals(codigoCondominio.toLowerCase())){
                     listRes.add(listaFuncionario.get(i));
                 }
             }
@@ -53,38 +53,56 @@ public class FuncionarioService {
         return null;
     }
 
-    public List<FuncionarioDto> buscarFuncionarioPeloNome(String nome) {
+    public List<FuncionarioDto> buscarFuncionarioPeloNome(String nome,String codigoCondominio) {
         List<Funcionario> lista = funcionarioRepository.findAll();
         List<Funcionario> listaEncontrados = new ArrayList<>();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getIdUsuario().getNome().equals(nome)) {
+            String codigoAtual =lista.get(i).getIdUsuario().getCodigoCondominio().getCodigoCondominio().toLowerCase();
+            String nomeAtual = lista.get(i).getIdUsuario().getNome().toLowerCase();
+
+            if (codigoAtual.equals(codigoCondominio.toLowerCase()) && nomeAtual.equals(nome.toLowerCase())) {
                 listaEncontrados.add(lista.get(i));
             }
         }
 
-        List<FuncionarioDto> listRes = lista.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        List<FuncionarioDto> listRes = listaEncontrados.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
         return listRes;
     }
 
-    public List<FuncionarioDto> buscarFuncionarioPeloServico(String servico) {
-        List<Funcionario> res = funcionarioRepository.findByNomeServico(servico);
+    public List<FuncionarioDto> buscarFuncionarioPeloServico(String servico,String codigoCondominio) {
+        List<Funcionario> lista = funcionarioRepository.findByNomeServico(servico);
+        List<Funcionario> listaEncontrados = new ArrayList<>();
 
-        List<FuncionarioDto> listRes = res.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        for (int i = 0; i < lista.size(); i++) {
+            String codigoAtual =lista.get(i).getIdUsuario().getCodigoCondominio().getCodigoCondominio().toLowerCase();
+            String servicoAtual = lista.get(i).getNomeServico().toLowerCase();
+            if (codigoAtual.equals(codigoCondominio.toLowerCase())&&servicoAtual.equals(servico.toLowerCase())) {
+                listaEncontrados.add(lista.get(i));
+            }
+        }
+        List<FuncionarioDto> listRes = listaEncontrados.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
         return listRes;
     }
 
-    public List<FuncionarioDto> buscarFuncionarioPeloServicoEnome(String servico, String nome) {
+    public List<FuncionarioDto> buscarFuncionarioPeloServicoEnome(String nome, String servico,String codigoCondominio) {
         List<Funcionario> lista = funcionarioRepository.findAll();
         List<Funcionario> listaEncontrados = new ArrayList<>();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getNomeServico().equals(servico) && lista.get(i).getIdUsuario().getNome().equals(nome)) {
+            String codigoAtual =lista.get(i).getIdUsuario().getCodigoCondominio().getCodigoCondominio().toLowerCase();
+            String nomeAtual = lista.get(i).getIdUsuario().getNome().toLowerCase();
+            String servicoAtual = lista.get(i).getNomeServico().toLowerCase();
+            if (
+                    servicoAtual.equals(servico.toLowerCase()) &&
+                    nomeAtual.equals(nome.toLowerCase()) &&
+                    codigoAtual.equals(codigoCondominio.toLowerCase())
+            ) {
                 listaEncontrados.add(lista.get(i));
             }
         }
 
-        List<FuncionarioDto> listRes = lista.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
+        List<FuncionarioDto> listRes = listaEncontrados.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
         return listRes;
     }
 
