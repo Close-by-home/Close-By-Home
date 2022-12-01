@@ -47,7 +47,7 @@ public class FuncionarioController {
 
     @GetMapping("buscaPorServico/{servico}")
     public ResponseEntity<List<FuncionarioDto>> listarPorServico(@PathVariable String servico) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloNome(servico);
+        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServico(servico);
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
@@ -55,8 +55,8 @@ public class FuncionarioController {
     }
 
     @GetMapping("buscaPorNomeEServico/{nome}/{servico}")
-    public ResponseEntity<List<FuncionarioDto>> listarPorNomeEServico(@PathVariable String nome,@PathVariable String servico) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServicoEnome(nome, servico);
+    public ResponseEntity<List<FuncionarioDto>> listarPorNomeEServico(@PathVariable String servico, @PathVariable String nome) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServicoEnome(servico, nome);
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }

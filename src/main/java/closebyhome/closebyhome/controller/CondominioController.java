@@ -63,8 +63,7 @@ public class CondominioController {
         String[] split = teste2.split("\n");
 
         List<UsuarioDtoCadastro> usuarios = new ArrayList<>();
-        boolean header = true;
-        UsuarioDto user = new UsuarioDto();
+
         Condominio condominio = condominioService.buscarCondominioPeloCodigo(idCondominio);
         for (String x : split) {
             if(header){
