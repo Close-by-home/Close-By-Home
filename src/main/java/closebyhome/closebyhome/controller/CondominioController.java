@@ -7,6 +7,7 @@ import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.service.CondominioService;
+import closebyhome.closebyhome.service.EmailService;
 import closebyhome.closebyhome.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class CondominioController {
     private CondominioService condominioService;
     @Autowired
     private UsuarioService usuarioService;
+
     @GetMapping
     public ResponseEntity<List<CondominioDto>> exibirTodos() {
 
@@ -62,6 +64,7 @@ public class CondominioController {
 
         List<UsuarioDtoCadastro> usuarios = new ArrayList<>();
         boolean header = true;
+        UsuarioDto user = new UsuarioDto();
         Condominio condominio = condominioService.buscarCondominioPeloCodigo(idCondominio);
         for (String x : split) {
             if(header){
@@ -75,15 +78,15 @@ public class CondominioController {
 
                 usuarios.add(new UsuarioDtoCadastro(x));
 
-                usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
+               user = usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
+
+                System.out.println(user.getNome());
+
             }
 
         }
 
-        usuarios.forEach(user -> {
 
-            System.out.println("Nome: " + user.getNome());
-        });
         return ResponseEntity.status(200).build();
     }
 
