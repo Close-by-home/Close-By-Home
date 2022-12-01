@@ -30,9 +30,9 @@ public class CondominioDto {
         return codigoCondominio;
     }
 
-//    public void setCodigoCondominio(String codigoCondominio) {
-//        this.codigoCondominio = codigoCondominio;
-//    }
+    public void setCodigoCondominio(String codigoCondominio) {
+        this.codigoCondominio = codigoCondominio;
+    }
 
 
     public String getCep() {
