@@ -1,6 +1,8 @@
 package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.AgendaDto;
+import closebyhome.closebyhome.dto.AgendaDtoUsuario;
+import closebyhome.closebyhome.dto.FuncionarioAgendaDto;
 import closebyhome.closebyhome.models.Notificacao;
 import closebyhome.closebyhome.service.AgendaService;
 import closebyhome.closebyhome.service.NotificacaoService;
@@ -34,23 +36,23 @@ public class AgendaController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @PostMapping("{idFuncionario}/{cpfUsuario}")
+    @PostMapping("{cpfFuncionario}/{cpfUsuario}")
     public ResponseEntity<AgendaDto> setAgenda(
-            @PathVariable int idFuncionario,
+            @PathVariable String cpfFuncionario,
             @PathVariable String cpfUsuario,
             @RequestParam String data
     ) {
-        AgendaDto res = agendaService.agendarServico(idFuncionario, cpfUsuario, LocalDateTime.parse(data));
+        AgendaDto res = agendaService.agendarServico(cpfFuncionario, cpfUsuario, LocalDateTime.parse(data));
         agendaService.adicionarObservador(notificacaoService);
 
         return ResponseEntity.status(201).body(res);
     }
 
     @GetMapping("/buscarPorCpf/{cpfUsuario}")
-    public ResponseEntity<List<AgendaDto>> getAgendaPorCpf(
+    public ResponseEntity<List<FuncionarioAgendaDto>> getAgendaPorCpf(
             @PathVariable String cpfUsuario
     ) {
-        List<AgendaDto> res = agendaService.buscarAgendaUsaurio(cpfUsuario);
+        List<FuncionarioAgendaDto> res = agendaService.buscarAgendaUsaurio(cpfUsuario);
 
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -58,11 +60,11 @@ public class AgendaController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @GetMapping("/{idFuncionario}")
-    public ResponseEntity<List<AgendaDto>> getAgendaPorId(
-            @PathVariable int idFuncionario
+    @GetMapping("/{cpfFuncionario}")
+    public ResponseEntity<List<AgendaDtoUsuario>> getAgendaPorId(
+            @PathVariable String cpfFuncionario
     ) {
-        List<AgendaDto> res = agendaService.buscarAgendaFuncionario(idFuncionario);
+        List<AgendaDtoUsuario> res = agendaService.buscarAgendaFuncionario(cpfFuncionario);
 
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -86,12 +88,12 @@ public class AgendaController {
 
     //Retorna os serviços agendados por data em ordem decrescente, caso o empilhar seja true,
     //retorna em ordem crescente(mais antigo pro mais recente)
-    @GetMapping("nota/{idFuncionario}/{empilhar}")
+    @GetMapping("nota/{cpfFuncionario}/{empilhar}")
     public ResponseEntity<List<AgendaDto>> buscarPorData(
-            @PathVariable int idFuncionario,
+            @PathVariable String cpfFuncionario,
             @PathVariable boolean empilhar
     ) {
-        List<AgendaDto> res = agendaService.buscaOrdenadoPorData(idFuncionario, empilhar);
+        List<AgendaDto> res = agendaService.buscaOrdenadoPorData(cpfFuncionario, empilhar);
 
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -100,14 +102,14 @@ public class AgendaController {
     }
 
     //Atualiza a avaliação do serviço onde id for = {idAgenda}
-    @PutMapping("avaliarAgenda/{nota}/{idUsuario}/{idAgenda}")
+    @PutMapping("avaliarAgenda/{nota}/{cpfUsuario}/{idAgenda}")
     public ResponseEntity<List<AgendaDto>> AvaliarAgenda(
             @PathVariable int nota,
-            @PathVariable Integer idUsuario,
+            @PathVariable String cpfUsuario,
             @PathVariable Integer idAgenda
     ) {
         AgendaDto res = null;
-        res = agendaService.avaliarAgenda(nota, idUsuario, idAgenda);
+        res = agendaService.avaliarAgenda(nota, cpfUsuario, idAgenda);
 
         if (res != null) {
             return ResponseEntity.status(201).build();

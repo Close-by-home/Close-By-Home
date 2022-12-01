@@ -34,10 +34,10 @@ public class AgendaService {
         return listRes;
     }
 
-    public AgendaDto agendarServico(int func, String user, LocalDateTime date) {
+    public AgendaDto agendarServico(String cpfFuncionario, String user, LocalDateTime date) {
 
         Usuario resUsuario = usuarioService.buscarUsuarioPorCpf(user);
-        Funcionario funcionario = funcionarioService.buscarFuncionario(func);
+        Funcionario funcionario = funcionarioService.buscarFuncionario(cpfFuncionario);
         FuncionarioAgendaDto funcionarioAgendaDto = new FuncionarioAgendaDto(funcionario);
 
         if (funcionario == null || resUsuario == null) {
@@ -53,17 +53,28 @@ public class AgendaService {
         return res;
     }
 
-    public List<AgendaDto> buscarAgendaUsaurio(String cpf) {
+    public List<FuncionarioAgendaDto> buscarAgendaUsaurio(String cpf) {
         List<Agenda> agendaList = agendaRepository.findByUserCpf(cpf);
+        List<FuncionarioAgendaDto> funcionarioAgendaDtoList = new ArrayList<>();
+
+        for(Agenda ag : agendaList){
+            int nota = pegarNota(ag.getFunc().getIdUsuario().getCpf());
+            FuncionarioAgendaDto funcionarioAgendaDto = new FuncionarioAgendaDto(ag.getFunc(),ag,nota);
+            funcionarioAgendaDtoList.add(funcionarioAgendaDto);
+        }
+
         List<AgendaDto> listRes = agendaList.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
 
-        return listRes;
+        return funcionarioAgendaDtoList;
     }
 
-    public List<AgendaDto> buscarAgendaFuncionario(int idFuncCpf) {
-        List<Agenda> agendaList = agendaRepository.findByFuncId(idFuncCpf);
-        List<AgendaDto> listRes = agendaList.stream().map(AgendaDtoFactory::toDto).collect(Collectors.toList());
-
+    public List<AgendaDtoUsuario> buscarAgendaFuncionario(String idFuncCpf) {
+        List<Agenda> agendaList = agendaRepository.findByFuncIdUsuarioCpf(idFuncCpf);
+        List<AgendaDtoUsuario> listRes = new ArrayList<>();
+        for (Agenda ag : agendaList){
+            AgendaDtoUsuario agendaDtoUsuario = new AgendaDtoUsuario(ag);
+            listRes.add(agendaDtoUsuario);
+        }
         return listRes;
     }
 
@@ -93,7 +104,7 @@ public class AgendaService {
         observadores.remove(obs);
     }
 
-    public List<AgendaDto> buscaOrdenadoPorData(int id, boolean empilhar) {
+    public List<AgendaDto> buscaOrdenadoPorData(String id, boolean empilhar) {
         List<Agenda> lista = agendaRepository.findAll();
 
         Agenda aux;
@@ -124,10 +135,10 @@ public class AgendaService {
         return listaDto;
     }
 
-    public AgendaDto avaliarAgenda(int nota, Integer idUsuario, Integer idAgenda) {
+    public AgendaDto avaliarAgenda(int nota, String cpfUsuario, Integer idAgenda) {
         Optional<Agenda> agendaAvaliada = agendaRepository.findById(idAgenda);
 
-        if (agendaAvaliada.isPresent() && idUsuario == agendaAvaliada.get().getUser().getId()) {
+        if (agendaAvaliada.isPresent() && cpfUsuario.equals(agendaAvaliada.get().getUser().getCpf()) ) {
             agendaAvaliada.get().setNotaServico(nota);
             agendaRepository.save(agendaAvaliada.get());
 
@@ -159,5 +170,17 @@ public class AgendaService {
             return resDto;
         }
         return null;
+    }
+
+    public int pegarNota(String cpf){
+        int nota = 5;
+        List<Agenda> funcionario = agendaRepository.findByFuncIdUsuarioCpf(cpf);
+        if (!(funcionario == null)){
+            for (Agenda ag : funcionario){
+                nota = nota + ag.getNotaServico();
+            }
+            nota = nota/(funcionario.size()+1);
+        }
+        return nota;
     }
 }
