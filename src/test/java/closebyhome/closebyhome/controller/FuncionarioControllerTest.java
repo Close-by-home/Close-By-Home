@@ -66,7 +66,7 @@ class FuncionarioControllerTest {
     void listarFuncionariosPorCondominioVazia() {
         when(repository.findAll()).thenReturn(new ArrayList<>());
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorCondominio(1);
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorCondominio(String.valueOf(1));
 
         assertEquals(204, listaUsuarios.getStatusCodeValue());
         assertNull(listaUsuarios.getBody());
@@ -75,9 +75,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("\"Lista de funcionarios atraves da busca por condominio e deve retornar status 200")
     void listarFuncionariosPorCondominio() {
-        when(service.buscarPorCondominio(1)).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarPorCondominio(String.valueOf(1))).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorCondominio(1);
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorCondominio(String.valueOf(1));
 
         assertEquals(200, listaUsuarios.getStatusCodeValue());
         assertTrue(listaUsuarios.getBody().size() > 0);
