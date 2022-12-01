@@ -174,7 +174,6 @@ public class UsuarioService {
         for (Usuario user : listaUsuario) {
             System.out.println("Encontrou um item");
             if (email.equals(user.getEmail()) && senha.equals(user.getSenha())) {
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
                 return user;
             }
         }

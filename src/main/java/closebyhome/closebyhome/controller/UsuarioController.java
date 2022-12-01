@@ -60,14 +60,14 @@ public class UsuarioController {
 
     //region Logar
     @PostMapping("/logar")
-    public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto novoUsuario) {
+    public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto usuario) {
 
-        UsuarioDto res = this.usuarioService.buscarUsuario(novoUsuario);
+        UsuarioDto res = this.usuarioService.buscarUsuario(usuario);
 
         if (res != null) {
             return ResponseEntity.status(200).body(res);
         } else {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
     }
     //endregion
@@ -182,11 +182,11 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("atualizar/imagem/{cpf}/{email}/{novoEmail}")
+    @PutMapping("atualizar/imagem/{cpf}/{email}")
     public ResponseEntity<String> atualizarImagem(
             @PathVariable String cpf,
             @PathVariable String email,
-            @PathVariable String novaImagem
+            @RequestBody String novaImagem
     ){
         Boolean res = usuarioService.atualizarImagem(cpf, email, novaImagem);
         if (res) {
@@ -201,9 +201,9 @@ public class UsuarioController {
             @PathVariable String email,
             @PathVariable String novoNumero
     ){
-        Boolean res = usuarioService.atualizarImagem(cpf, email, novoNumero);
+        Boolean res = usuarioService.atualizarNumero(cpf, email, novoNumero);
         if (res) {
-            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+            return ResponseEntity.status(200).body("Numero atualizado com sucesso!");
         } else {
             return ResponseEntity.status(404).body("Email ou cpf invalidos");
         }

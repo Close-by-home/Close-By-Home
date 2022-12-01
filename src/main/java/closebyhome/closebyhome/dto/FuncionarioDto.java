@@ -2,6 +2,8 @@ package closebyhome.closebyhome.dto;
 
 import closebyhome.closebyhome.models.Usuario;
 
+import java.time.LocalDateTime;
+
 
 public class FuncionarioDto {
 
@@ -10,6 +12,19 @@ public class FuncionarioDto {
     private String emailUsuario;
     private Double valorMinimo;
     private Usuario usuario;
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+//    public int getNota() {
+//        return nota;
+//    }
+//
+//    public void setNota(int nota) {
+//        this.nota = nota;
+//    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;

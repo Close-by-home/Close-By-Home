@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.*;
+import closebyhome.closebyhome.models.Agenda;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Funcionario;
 import closebyhome.closebyhome.models.Usuario;
@@ -19,7 +20,8 @@ public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-
+    @Autowired
+    private AgendaRepository agendaRepository;
     @Autowired
     private CondominioRepository condominioRepository;
 
@@ -29,8 +31,8 @@ public class FuncionarioService {
         return listRes;
     }
 
-    public Funcionario buscarFuncionario(int idFunc) {
-        Funcionario res = funcionarioRepository.findById(idFunc);
+    public Funcionario buscarFuncionario(String cpfFuncionario) {
+        Funcionario res = funcionarioRepository.findByIdUsuarioCpf(cpfFuncionario);
         return res;
     }
 
@@ -105,5 +107,6 @@ public class FuncionarioService {
         List<FuncionarioDto> listRes = listaEncontrados.stream().map(FuncionarioDtoFactory::toDto).collect(Collectors.toList());
         return listRes;
     }
+
 
 }

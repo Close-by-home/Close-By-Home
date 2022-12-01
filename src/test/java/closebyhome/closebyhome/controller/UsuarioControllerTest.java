@@ -2,6 +2,7 @@ package closebyhome.closebyhome.controller;
 
 import closebyhome.closebyhome.dto.CondominioDto;
 import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.dto.UsuarioLogarDto;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Usuario;
@@ -9,6 +10,7 @@ import closebyhome.closebyhome.repository.FuncionarioRepository;
 import closebyhome.closebyhome.repository.UsuarioRepository;
 import closebyhome.closebyhome.service.CondominioService;
 import closebyhome.closebyhome.service.UsuarioService;
+import org.hibernate.type.AnyType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -34,9 +37,6 @@ class UsuarioControllerTest {
     @Autowired
     @MockBean
     private UsuarioService service;
-    @Autowired
-    private CondominioService serviceC;
-
     @MockBean
     private UsuarioRepository repository;
 
@@ -54,8 +54,8 @@ class UsuarioControllerTest {
     @Test
     @DisplayName("Retorna lista de usuarios e retorna o status 200")
     void retornaListaDeUsuarios(){
-        when(repository.findAll()).thenReturn(List.of(
-                new Usuario()));
+        when(service.buscar()).thenReturn(List.of(
+                new UsuarioDto()));
 
         ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listar();
 
@@ -78,9 +78,8 @@ class UsuarioControllerTest {
     @Test
     @DisplayName("Listar por condominio e retornar o status 200")
     void listarPorCondominio(){
-        when(repository.findAll()).thenReturn(List.of(
-                new Usuario(),
-                new Usuario()));
+        when(service.buscarPorCondominio(1)).thenReturn(List.of(
+                new UsuarioDto()));
 
         ResponseEntity<List<UsuarioDto>> listaUsuarios = controller.listarPorCondominio(1);
 
@@ -90,15 +89,26 @@ class UsuarioControllerTest {
     }
 
 
-//    @Test
-//    @DisplayName("Verificar se o usuario ja esta cadastrado, se não, retornar o status 404")
-//    void logarUsuarioInexistente(){
-//        when(repository.findByEmailAndSenhaAndCodigoCondominioCodigoCondominio("ana@hotmail.com", "senha123", "1"))
-//                .equals(true);
-//
-//    assertEquals(200, controller.logar(""));
-//
-//    }
+    @Test
+    @DisplayName("Logar usuario quando email, senha e codigo do condominio sejam validos e retornar status 200")
+    void logarUsuarioInexistente(){
+        UsuarioLogarDto user = new UsuarioLogarDto();
+        user.setEmail("ana@hotmail.com");
+        user.setSenha("senha123");
+        user.setCodigoCondominio("1");
+
+        UsuarioLogarDto user2 = new UsuarioLogarDto();
+        user.setEmail("ana@hotmail.com");
+        user.setSenha("senhaerrada");
+        user.setCodigoCondominio("1");
+
+        when(service.buscarUsuario(user)).thenReturn(new UsuarioDto());
+        when(service.buscarUsuario(user2)).thenReturn(null);
+
+    assertEquals(200, controller.logar(user).getStatusCodeValue());
+        assertEquals(204, controller.logar(user2).getStatusCodeValue());
+
+    }
 
     @Test
     @DisplayName("Atualizar senha padrão recebida por email, por senha desejada, deve retornar status 204 Usuario não existe")
@@ -138,14 +148,5 @@ class UsuarioControllerTest {
 
         assertEquals(404, controller.ativaConta("laura@hotmail.com", "manicure", 45.00).getStatusCodeValue());
     }
-
-//    @Test
-//    @DisplayName("Cadastrar usuario e retonar status 201")
-//    void cadastrarUsuario(){
-//        when(serviceC.buscarCondominioPeloCodigo("1"))
-//                .thenReturn(new Condominio());
-//
-//    }
-
 }
 

@@ -14,6 +14,7 @@ public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 
     List<Agenda> findByUserCpf(String Cpf);
 
+    List<Agenda> findByFuncIdUsuarioCpf(String idFunc);
     List<Agenda> findByFuncId(int idFunc);
 
     List<Agenda> findByData(LocalDateTime data);

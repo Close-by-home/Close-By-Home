@@ -3,6 +3,7 @@ package closebyhome.closebyhome.dto;
 import closebyhome.closebyhome.models.Funcionario;
 
 public class FuncionarioDtoFactory {
+
      public  static FuncionarioDto toDto(Funcionario funcionarioDomain){
         FuncionarioDto funcionarioDto = new FuncionarioDto();
 
@@ -12,6 +13,7 @@ public class FuncionarioDtoFactory {
         funcionarioDto.setUsuario(funcionarioDomain.getIdUsuario());
         funcionarioDto.setNomeUsuario(funcionarioDomain.getIdUsuario().getNome());
         funcionarioDto.setEmailUsuario(funcionarioDomain.getIdUsuario().getEmail());
+//        funcionarioDto.setNota(0);
         return funcionarioDto;
     }
 //    Pra que isso serve???
