@@ -60,14 +60,14 @@ public class UsuarioController {
 
     //region Logar
     @PostMapping("/logar")
-    public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto novoUsuario) {
+    public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto usuario) {
 
-        UsuarioDto res = this.usuarioService.buscarUsuario(novoUsuario);
+        UsuarioDto res = this.usuarioService.buscarUsuario(usuario);
 
         if (res != null) {
             return ResponseEntity.status(200).body(res);
         } else {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
     }
     //endregion

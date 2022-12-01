@@ -61,7 +61,7 @@ public class CondominioController {
         String[] split = teste2.split("\n");
 
         List<UsuarioDtoCadastro> usuarios = new ArrayList<>();
-        Condominio condominio = condominioService.buscarCondominio(idCondominio);
+        Condominio condominio = condominioService.buscarCondominioPeloCodigo(idCondominio);
         for (String x : split) {
             System.out.println("-".repeat(10));
 
