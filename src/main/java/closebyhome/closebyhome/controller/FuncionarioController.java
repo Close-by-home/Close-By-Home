@@ -36,27 +36,31 @@ public class FuncionarioController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @GetMapping("buscaPorNome/{nome}")
-    public ResponseEntity<List<FuncionarioDto>> listarPorNome(@PathVariable String nome) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloNome(nome);
+    @GetMapping("buscaPorNome/{nome}/{codigoCondominio}")
+    public ResponseEntity<List<FuncionarioDto>> listarPorNome(@PathVariable String nome, @PathVariable String codigoCondominio) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloNome(nome,codigoCondominio);
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(res);
     }
 
-    @GetMapping("buscaPorServico/{servico}")
-    public ResponseEntity<List<FuncionarioDto>> listarPorServico(@PathVariable String servico) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServico(servico);
+
+    @GetMapping("buscaPorServico/{servico}/{codigoCondominio}")
+    public ResponseEntity<List<FuncionarioDto>> listarPorServico(@PathVariable String servico, @PathVariable String codigoCondominio) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServico(servico, codigoCondominio);
+
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(res);
     }
 
-    @GetMapping("buscaPorNomeEServico/{nome}/{servico}")
-    public ResponseEntity<List<FuncionarioDto>> listarPorNomeEServico(@PathVariable String servico, @PathVariable String nome) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServicoEnome(servico, nome);
+
+    @GetMapping("buscaPorNomeEServico/{nome}/{servico}/{codigoCondominio}")
+    public ResponseEntity<List<FuncionarioDto>> listarPorNomeEServico(@PathVariable String nome,@PathVariable String servico,@PathVariable String codigoCondominio) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarFuncionarioPeloServicoEnome(nome, servico,codigoCondominio);
+
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
