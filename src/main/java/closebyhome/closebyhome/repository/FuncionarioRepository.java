@@ -11,5 +11,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
       Funcionario findById(int id);
       List<Funcionario> findByNomeServico(String nome);
 
+      Funcionario findByIdUsuarioCpf(String cpf);
 //    Funcionario findByUsuarioId(Integer id);
 }

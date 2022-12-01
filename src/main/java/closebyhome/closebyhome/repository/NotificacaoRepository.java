@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface NotificacaoRepository extends JpaRepository<Notificacao, Integer> {
     List<Notificacao> findByUsuario(Optional <Usuario> usuario);
+
+    List<Notificacao> findByUsuarioCpf(String cpf);
 }

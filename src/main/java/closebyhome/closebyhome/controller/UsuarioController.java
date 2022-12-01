@@ -182,11 +182,11 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("atualizar/imagem/{cpf}/{email}/{novoEmail}")
+    @PutMapping("atualizar/imagem/{cpf}/{email}")
     public ResponseEntity<String> atualizarImagem(
             @PathVariable String cpf,
             @PathVariable String email,
-            @PathVariable String novaImagem
+            @RequestBody String novaImagem
     ){
         Boolean res = usuarioService.atualizarImagem(cpf, email, novaImagem);
         if (res) {
@@ -201,9 +201,9 @@ public class UsuarioController {
             @PathVariable String email,
             @PathVariable String novoNumero
     ){
-        Boolean res = usuarioService.atualizarImagem(cpf, email, novoNumero);
+        Boolean res = usuarioService.atualizarNumero(cpf, email, novoNumero);
         if (res) {
-            return ResponseEntity.status(200).body("Email atualizado com sucesso!");
+            return ResponseEntity.status(200).body("Numero atualizado com sucesso!");
         } else {
             return ResponseEntity.status(404).body("Email ou cpf invalidos");
         }
