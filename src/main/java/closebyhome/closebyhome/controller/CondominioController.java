@@ -49,10 +49,10 @@ public class CondominioController {
     }
 
 
-    @PostMapping(value = "/import-usuarios/{idCondominio}", consumes = "multipart/form-data")
+    @PostMapping(value = "/import-usuarios/{codigoCondominio}", consumes = "multipart/form-data")
     public ResponseEntity cadastroUsuarioAutomatico(
             @RequestBody MultipartFile novosUsuarios,
-            @PathVariable String idCondominio
+            @PathVariable String codigoCondominio
     ) throws IOException {
         String nomeArq = novosUsuarios.getResource().getFilename();
         System.out.println(nomeArq);
@@ -65,30 +65,34 @@ public class CondominioController {
         List<UsuarioDtoCadastro> usuarios = new ArrayList<>();
         boolean header = true;
         UsuarioDto user = new UsuarioDto();
-        Condominio condominio = condominioService.buscarCondominioPeloCodigo(idCondominio);
+        Condominio condominio = condominioService.buscarCondominioPeloCodigo(codigoCondominio);
 
-        for (String x : split) {
-            if(header){
-                header = false;
+        if(condominio != null){
+
+
+            for (String x : split) {
+                if(header){
+                    header = false;
+                }
+                else{
+
+                    System.out.println("-".repeat(10));
+
+                    System.out.println(x);
+
+                    usuarios.add(new UsuarioDtoCadastro(x));
+
+                   user = usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
+
+                    System.out.println(user.getNome());
+
+                }
             }
-            else{
-
-                System.out.println("-".repeat(10));
-
-                System.out.println(x);
-
-                usuarios.add(new UsuarioDtoCadastro(x));
-
-               user = usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
-
-                System.out.println(user.getNome());
-
-            }
-
+            return ResponseEntity.status(200).build();
         }
 
+        return ResponseEntity.status(204).build();
 
-        return ResponseEntity.status(200).build();
     }
 
     @GetMapping(value = "/arquivo-exemplo",produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
