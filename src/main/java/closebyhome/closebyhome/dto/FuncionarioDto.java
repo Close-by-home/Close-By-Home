@@ -13,10 +13,10 @@ public class FuncionarioDto {
     private Double valorMinimo;
     private Usuario usuario;
 
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
+//NÂO DESCOMENTA ESSE GET POR FAVOR SE VOCE TEM AMOR A SUA VIDA NAO FACA ISSO
+//    public Usuario getUsuario() {
+//        return usuario;
+//    }
 
 //    public int getNota() {
 //        return nota;
