@@ -2,6 +2,8 @@ package closebyhome.closebyhome.service;
 
 import closebyhome.closebyhome.dto.CondominioDto;
 import closebyhome.closebyhome.dto.CondominioDtoFactory;
+import closebyhome.closebyhome.dto.UsuarioDto;
+import closebyhome.closebyhome.dto.UsuarioDtoFactory;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.models.Usuario;
 import closebyhome.closebyhome.repository.CondominioRepository;
@@ -17,13 +19,16 @@ public class CondominioService {
     @Autowired
     private CondominioRepository condominioRepository;
 
-    public CondominioDto cadastrar(CondominioDto res){
+    public CondominioDto cadastrar(CondominioDto condominioNovo){
 
-        Condominio c = new Condominio(res);
+        Condominio c = new Condominio(condominioNovo);
 
-        this.condominioRepository.save(c);
+        condominioRepository.save(c);
+        List<Condominio> listaTemp= new ArrayList<>();
+        listaTemp.add(c);
+        List<CondominioDto> listRes = listaTemp.stream().map(CondominioDtoFactory::toDto).collect(Collectors.toList());
 
-        return res;
+        return listRes.get(0);
     }
 
     public Condominio buscarCondominioPeloCodigo(String codigoCondominio){
