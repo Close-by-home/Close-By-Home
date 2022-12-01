@@ -86,9 +86,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo nome e retonar status 200")
     void buscarFuncionarioPeloNome() {
-        when(service.buscarFuncionarioPeloNome("Augusto")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloNome("Augusto", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNome("Augusto");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNome("Augusto", "1");
 
         assertEquals(200, listaUsuarios.getStatusCodeValue());
         assertTrue(listaUsuarios.getBody().size() > 0);
@@ -97,9 +97,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo nome e retonar status 204")
     void buscarFuncionarioPeloNomeErrado() {
-        when(service.buscarFuncionarioPeloNome("Augusto")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloNome("Augusto", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNome("Agusto");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNome("Agusto", "1");
 
         assertEquals(204, listaUsuarios.getStatusCodeValue());
         assertNull(listaUsuarios.getBody());
@@ -108,9 +108,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo nome e serviço e retonar status 200")
     void buscarFuncionarioPeloNomeServico() {
-        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("manicure", "Joyce");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("manicure", "Joyce", "1");
 
         assertEquals(200, listaUsuarios.getStatusCodeValue());
         assertTrue(listaUsuarios.getBody().size() > 0);
@@ -119,9 +119,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo nome e serviço, porém com o nome invalido deve retonar status 204")
     void buscarFuncionarioPeloNomeServicoComNomeInvalido() {
-        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("manicure", "Carla");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("manicure", "Carla", "1");
 
         assertEquals(204, listaUsuarios.getStatusCodeValue());
         assertNull(listaUsuarios.getBody());
@@ -130,9 +130,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo nome e serviço, porém com o serviço invalido deve retonar status 204")
     void buscarFuncionarioPeloNomeServicoComServicoInvalido() {
-        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloServicoEnome("manicure", "Joyce", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("jardineira", "Carla");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorNomeEServico("jardineira", "Carla", "1");
 
         assertEquals(204, listaUsuarios.getStatusCodeValue());
         assertNull(listaUsuarios.getBody());
@@ -141,9 +141,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo serviço e retonar status 200")
     void buscarFuncionarioPeloServico() {
-        when(service.buscarFuncionarioPeloServico("porteiro")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloServico("porteiro", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorServico("porteiro");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorServico("porteiro", "1");
 
         assertEquals(200, listaUsuarios.getStatusCodeValue());
         assertTrue(listaUsuarios.getBody().size() > 0);
@@ -152,9 +152,9 @@ class FuncionarioControllerTest {
     @Test
     @DisplayName("Listar funcionarios atraves de busca pelo serviço errado e retonar status 204")
     void buscarFuncionarioPeloServicoErrado() {
-        when(service.buscarFuncionarioPeloServico("porteiro")).thenReturn(List.of(new FuncionarioDto()));
+        when(service.buscarFuncionarioPeloServico("porteiro", "1")).thenReturn(List.of(new FuncionarioDto()));
 
-        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorServico("jardineiro");
+        ResponseEntity<List<FuncionarioDto>> listaUsuarios = controller.listarPorServico("jardineiro", "1");
 
         assertEquals(204, listaUsuarios.getStatusCodeValue());
         assertNull(listaUsuarios.getBody());
