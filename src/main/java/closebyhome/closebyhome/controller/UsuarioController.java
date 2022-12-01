@@ -125,12 +125,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar/{codigoCondominio}")
-    public ResponseEntity<UsuarioDtoCadastro> cadastrar(
+    public ResponseEntity<UsuarioDto> cadastrar(
             @RequestBody @Valid UsuarioDtoCadastro novoUsuario,
             @PathVariable String codigoCondominio
     ) {
         Condominio condominio = this.condominioService.buscarCondominioPeloCodigo(codigoCondominio);
-        UsuarioDtoCadastro res = new UsuarioDtoCadastro();
+        UsuarioDto res = new UsuarioDto();
         if(condominio != null){
             res = this.usuarioService.cadastrar(novoUsuario,condominio);
 

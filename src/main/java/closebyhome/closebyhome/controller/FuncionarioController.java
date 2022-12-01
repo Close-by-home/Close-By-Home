@@ -25,9 +25,9 @@ public class FuncionarioController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @GetMapping("{idCondominio}")
-    public ResponseEntity<List<FuncionarioDto>> listarPorCondominio(@PathVariable Integer idCondominio) {
-        List<FuncionarioDto> res = this.funcionarioService.buscarPorCondominio(idCondominio);
+    @GetMapping("{codigoCondominio}")
+    public ResponseEntity<List<FuncionarioDto>> listarPorCondominio(@PathVariable String codigoCondominio) {
+        List<FuncionarioDto> res = this.funcionarioService.buscarPorCondominio(codigoCondominio);
 
         if (res.isEmpty()) {
             return ResponseEntity.status(204).build();

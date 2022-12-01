@@ -9,6 +9,8 @@ public class FuncionarioAgendaDto {
     private String contato;
     private String nomeServico;
     private Double valorMinimo;
+    private String imagem;
+    private int nota;
 
     public FuncionarioAgendaDto(Funcionario funcionario) {
         this.cpf = funcionario.getIdUsuario().getCpf();
@@ -16,6 +18,8 @@ public class FuncionarioAgendaDto {
         this.contato = funcionario.getIdUsuario().getTelefone();
         this.nomeServico = funcionario.getNomeServico();
         this.valorMinimo = funcionario.getValorMinimo();
+        this.imagem = funcionario.getIdUsuario().getImagem();
+        this.nota = 0;
     }
 
     public String getCpf() {

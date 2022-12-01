@@ -7,6 +7,7 @@ import closebyhome.closebyhome.dto.UsuarioDtoCadastro;
 import closebyhome.closebyhome.listaObj.ListaObj;
 import closebyhome.closebyhome.models.Condominio;
 import closebyhome.closebyhome.service.CondominioService;
+import closebyhome.closebyhome.service.EmailService;
 import closebyhome.closebyhome.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class CondominioController {
     private CondominioService condominioService;
     @Autowired
     private UsuarioService usuarioService;
+
     @GetMapping
     public ResponseEntity<List<CondominioDto>> exibirTodos() {
 
@@ -61,29 +63,36 @@ public class CondominioController {
         String[] split = teste2.split("\n");
 
         List<UsuarioDtoCadastro> usuarios = new ArrayList<>();
+
         Condominio condominio = condominioService.buscarCondominioPeloCodigo(idCondominio);
         for (String x : split) {
-            System.out.println("-".repeat(10));
+            if(header){
+                header = false;
+            }
+            else{
 
-            System.out.println(x);
+                System.out.println("-".repeat(10));
 
-            usuarios.add(new UsuarioDtoCadastro(x));
+                System.out.println(x);
 
-            usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
+                usuarios.add(new UsuarioDtoCadastro(x));
+
+               user = usuarioService.cadastrar(new UsuarioDtoCadastro(x),condominio);
+
+                System.out.println(user.getNome());
+
+            }
 
         }
 
-        usuarios.forEach(user -> {
 
-            System.out.println("Nome: " + user.getNome());
-        });
         return ResponseEntity.status(200).build();
     }
 
     @GetMapping(value = "/arquivo-exemplo",produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     public ResponseEntity<byte[]> download(){
-        String teste = "NOME;CPF;TELEFONE;BLOCO;EMAIL" +"\n" +
-                "usuario;9999999999;11999999999;B9;usuario@gmail.com";
+        String teste = "NOME;CPF;TELEFONE;BLOCO;EMAIL;SENHA" +"\n" +
+                "usuario;9999999999;11999999999;B9;usuario@gmail.com;senha123";
         byte[] arquivo = teste.getBytes();
 
         return ResponseEntity.status(200).header("content-disposition", "attachment; filename=\"arquivo_exemplo.csv\"").body(arquivo);
