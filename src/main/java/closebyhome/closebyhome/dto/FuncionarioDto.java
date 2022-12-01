@@ -12,7 +12,15 @@ public class FuncionarioDto {
     private String emailUsuario;
     private Double valorMinimo;
     private Usuario usuario;
+    private String cpf;
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 //NÂO DESCOMENTA ESSE GET POR FAVOR SE VOCE TEM AMOR A SUA VIDA NAO FACA ISSO
 //    public Usuario getUsuario() {
 //        return usuario;

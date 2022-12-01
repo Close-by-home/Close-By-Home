@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Usuario", description = "Requesição dos Usuario.")
-@CrossOrigin(origins =  "http://localhost:3000",maxAge = 3600)
+@CrossOrigin(origins = "http://10.18.6.31:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {

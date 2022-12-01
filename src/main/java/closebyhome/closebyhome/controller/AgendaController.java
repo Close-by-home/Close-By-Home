@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "Agenda", description = "Requesição dos Usuario.")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://10.18.6.31:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/agenda")
 public class AgendaController {
@@ -36,11 +36,11 @@ public class AgendaController {
         return ResponseEntity.status(200).body(res);
     }
 
-    @PostMapping("{cpfFuncionario}/{cpfUsuario}")
+    @PostMapping("{cpfFuncionario}/{cpfUsuario}/{data}")
     public ResponseEntity<AgendaDto> setAgenda(
             @PathVariable String cpfFuncionario,
             @PathVariable String cpfUsuario,
-            @RequestParam String data
+            @PathVariable String data
     ) {
         AgendaDto res = agendaService.agendarServico(cpfFuncionario, cpfUsuario, LocalDateTime.parse(data));
         agendaService.adicionarObservador(notificacaoService);

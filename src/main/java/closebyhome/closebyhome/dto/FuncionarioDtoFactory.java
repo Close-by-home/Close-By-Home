@@ -13,6 +13,7 @@ public class FuncionarioDtoFactory {
         funcionarioDto.setUsuario(funcionarioDomain.getIdUsuario());
         funcionarioDto.setNomeUsuario(funcionarioDomain.getIdUsuario().getNome());
         funcionarioDto.setEmailUsuario(funcionarioDomain.getIdUsuario().getEmail());
+        funcionarioDto.setCpf(funcionarioDomain.getIdUsuario().getCpf());
 //        funcionarioDto.setNota(0);
         return funcionarioDto;
     }
