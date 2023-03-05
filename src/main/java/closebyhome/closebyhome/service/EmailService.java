@@ -37,4 +37,34 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+    public void RecuperarSenhaEmail(String emailUsuario,String senhaUsuario) {
+        String meuEmail = "closebyhomegp5@gmail.com";
+        String senha = "psurrtdypqzmjght";
+
+        SimpleEmail email = new SimpleEmail();
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(465);
+        email.setAuthenticator(new DefaultAuthenticator(meuEmail, senha));
+        email.setSSLOnConnect(true);
+
+        try {
+
+            email.setFrom(meuEmail);
+            email.setSubject("CloseByHome");
+            email.setMsg("" +
+                    "Olá"   +
+                    "somos a CloseByHome sejá bem-vindo ! \n" +
+                    "Esses são os dados para o primeiro acessoda conta: \n" +
+                    "Email:" + emailUsuario+ "\n" +
+                    "Senha Temporario:" + senhaUsuario +
+                    "Trocar a senho após logar");
+            email.addTo(emailUsuario);
+            email.send();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

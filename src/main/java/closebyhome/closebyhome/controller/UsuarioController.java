@@ -88,7 +88,14 @@ public class UsuarioController {
             return ResponseEntity.status(204).body("Email ou senha invalidos");
         }
     }
+    @PutMapping("recuperar-senha/{email}/{cpf}")
+    public ResponseEntity<String> recuperaSenha(
+            @PathVariable String email,
+            @PathVariable String cpf
+    ){
+        return ResponseEntity.status(200).body(this.usuarioService.recuperarSenha(email,cpf));
 
+    }
 //    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
 //    public ResponseEntity<String> atualizarSenhaEsquicida(
 //            @PathVariable String codCondominio,

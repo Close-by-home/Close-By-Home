@@ -55,6 +55,16 @@ public class UsuarioService {
         return resFinal;
     }
 
+    public  String recuperarSenha(String email, String cpf){
+        Usuario valida = this.buscarUsuarioPorCpf(cpf);
+        if(valida != null){
+            this.atualizarSenha(email,valida.getSenha(),"AZ9682SP" );
+            this.emailService.RecuperarSenhaEmail(email,"AZ9682SP");
+
+            return "Senha Temporaria enviada no e-mail";
+        }
+        return "Cpf ou E-mail Inválidos";
+    }
     public Boolean ativarContaFuncionario(String email, String servico, Double valor) {
         Usuario usuario = buscarIdLogado(email);
         if (usuario != null) {

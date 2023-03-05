@@ -88,18 +88,18 @@ public class AgendaController {
 
     //Retorna os serviços agendados por data em ordem decrescente, caso o empilhar seja true,
     //retorna em ordem crescente(mais antigo pro mais recente)
-    @GetMapping("nota/{cpfFuncionario}/{empilhar}")
-    public ResponseEntity<List<AgendaDto>> buscarPorData(
-            @PathVariable String cpfFuncionario,
-            @PathVariable boolean empilhar
-    ) {
-        List<AgendaDto> res = agendaService.buscaOrdenadoPorData(cpfFuncionario, empilhar);
-
-        if (res.isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
-        return ResponseEntity.status(200).body(res);
-    }
+//    @GetMapping("nota/{cpfFuncionario}/{empilhar}")
+//    public ResponseEntity<List<AgendaDto>> buscarPorData(
+//            @PathVariable String cpfFuncionario,
+//            @PathVariable boolean empilhar
+//    ) {
+//        List<AgendaDto> res = agendaService.buscaOrdenadoPorData(cpfFuncionario, empilhar);
+//
+//        if (res.isEmpty()) {
+//            return ResponseEntity.status(204).build();
+//        }
+//        return ResponseEntity.status(200).body(res);
+//    }
 
     //Atualiza a avaliação do serviço onde id for = {idAgenda}
     @PutMapping("avaliarAgenda/{nota}/{cpfUsuario}/{idAgenda}")
