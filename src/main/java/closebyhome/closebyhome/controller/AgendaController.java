@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "Agenda", description = "Requesição dos Usuario.")
-@CrossOrigin(origins = "http://10.18.6.31:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://3.221.81.114:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/agenda")
 public class AgendaController {
