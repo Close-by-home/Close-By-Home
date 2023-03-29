@@ -180,7 +180,25 @@ public class UsuarioService {
         return null;
 
     }
+    public void recuperarSenha(String codigoCondominio,String email ){
 
+        Usuario usuario =usuarioRepository
+                .findByCodigoCondominioCodigoCondominioAndEmail(codigoCondominio,email);
+
+        if(usuario.getEmail() != null){
+            emailService.
+                    EnviarRecuperaSenha(usuario.getEmail(), usuario.getCpf());
+
+        }
+    }
+
+    public void mudarSenha(String cpf,String novaSenha){
+        Usuario user = usuarioRepository.findByCpf(cpf);
+        if(user.getCpf() != null){
+            user.setSenha(novaSenha);
+            usuarioRepository.save(user);
+        }
+    }
     private Usuario buscarIdLogado(String email) {
         List<Usuario> listaUsuario = usuarioRepository.findAll();
         for (Usuario user : listaUsuario) {

@@ -152,13 +152,18 @@ public class AgendaService {
         return null;
     }
 
-    public Long contarAvaliacoesPorFuncionario(Integer idFuncionario) {
-        Long quantidadeAvaliacoes = agendaRepository.countById(idFuncionario);
-
-        if (quantidadeAvaliacoes >= 0) {
-            return quantidadeAvaliacoes;
+    public Double contarAvaliacoesPorFuncionario(String cpfFuncionario) {
+        List<Agenda> agendasUsuario = agendaRepository.findByFuncIdUsuarioCpf(cpfFuncionario);
+        Double quantidadeEstrelas = 5.0;
+        Integer quantidade = 1;
+        for (Agenda ag: agendasUsuario) {
+            quantidade++;
+            quantidadeEstrelas = quantidadeEstrelas + ag.getNotaServico();
         }
-        return null;
+        quantidadeEstrelas = (quantidadeEstrelas / quantidade);
+
+
+        return quantidadeEstrelas;
     }
 
     public List<AgendaDto> buscaAgendaPorData(String data) {

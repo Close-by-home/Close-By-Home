@@ -88,6 +88,23 @@ public class UsuarioController {
             return ResponseEntity.status(204).body("Email ou senha invalidos");
         }
     }
+    @PutMapping("mudar-senha/{cpf}/{senhaNova}")
+    public ResponseEntity<String> mudarSenha(
+            @PathVariable String cpf,
+            @PathVariable String senhaNova
+    ) {
+        this.usuarioService.mudarSenha(cpf,senhaNova);
+        return ResponseEntity.status(202).body("Senha Atualizada com Sucesso!");
+    }
+
+    @PostMapping("recuperar-senha/{codigoCondominio}/{email}")
+    public ResponseEntity<String> recuperarSenhaEmail(
+            @PathVariable String codigoCondominio,
+            @PathVariable String email
+    ) {
+            this.usuarioService.mudarSenha(codigoCondominio,email);
+            return ResponseEntity.status(202).body("ok");
+    }
 
 //    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
 //    public ResponseEntity<String> atualizarSenhaEsquicida(

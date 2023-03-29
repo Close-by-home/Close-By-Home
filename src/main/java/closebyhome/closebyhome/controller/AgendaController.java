@@ -117,10 +117,10 @@ public class AgendaController {
         return ResponseEntity.status(204).build();
 
     }
-    @GetMapping("contarAvaliacoes/{id}")
-    public ResponseEntity<Long> contarAvaliacoes(@PathVariable Integer id){
-        Long res = null;
-        res = agendaService.contarAvaliacoesPorFuncionario(id);
+    @GetMapping("contarAvaliacoes/{cpf}")
+    public ResponseEntity<Double> contarAvaliacoes(@PathVariable String cpf){
+        Double res = null;
+        res = agendaService.contarAvaliacoesPorFuncionario(cpf);
 
         if (res != null) {
             return ResponseEntity.status(200).body(res);

@@ -12,7 +12,7 @@ insert
         usuario
         (cpf,fk_codigo_condominio,bloco,email,telefone,nome,senha,funcionario,sexo,imagem)
     values
-    ('47415092066',1,'b2','felipe@hotmail.com','11969385228','Felipe','senha123',true,'m','imagem'),
+    ('47415092066',1,'b2','felipe.andrade@bandtec.com.br','11969385228','Felipe','senha123',true,'m','imagem'),
     ('70109220048',1,'c5','leandro@hotmail.com','11969385228','Leandro','senha123',false,'m','imagem'),
     ('25637233020',2,'f7','kleiton@hotmail.com','11969385228','Kleiton','senha123',false,'m','imagem');
 
