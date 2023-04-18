@@ -10,5 +10,5 @@ import java.util.List;
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
 
 
-    List<Chat> fndByFuncIdUsuarioCpfAndUserCpf(String cpfFunc, String cpfUser);
+    List<Chat> findByFuncIdUsuarioCpfAndUserCpf(String cpfFunc, String cpfUser);
 }

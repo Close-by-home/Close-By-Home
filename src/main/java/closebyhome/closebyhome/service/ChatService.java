@@ -27,7 +27,7 @@ public class ChatService {
 
         public List<ChatDto> getConversa(String user, String func) {
         List<Chat> ret = chatRepository.
-                fndByFuncIdUsuarioCpfAndUserCpf(func,user);
+                findByFuncIdUsuarioCpfAndUserCpf(func,user);
 
         List<ChatDto> listRes = ret.stream().map(ChatDtoFactory::toDto).collect(Collectors.toList());
 
@@ -49,8 +49,8 @@ public class ChatService {
             chatRepository.save(chat);
             return ret;
         }
-        public ChatDto chatEnviarMensagemUsuario(String cpfFuncionario,
-                                                 String cpfUsuario,
+        public ChatDto chatEnviarMensagemUsuario(String cpfUsuario,
+                                                 String cpfFuncionario,
                                                  String mensagem){
             ChatDto ret = new ChatDto();
             Usuario resUsuario = usuarioService.buscarUsuarioPorCpf(cpfUsuario);

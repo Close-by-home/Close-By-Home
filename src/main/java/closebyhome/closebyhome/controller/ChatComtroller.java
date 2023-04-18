@@ -35,7 +35,7 @@ public class ChatComtroller {
         return ResponseEntity.status(200).body(res);
     }
 
-    @PostMapping("{cpfFuncionario}/{cpfUsuario}/{mensagem}")
+    @PostMapping("mensagemFuncionario/{cpfFuncionario}/{cpfUsuario}/{mensagem}")
     public ResponseEntity<ChatDto> enviarMensagemFuncionario(
             @PathVariable String cpfFuncionario,
             @PathVariable String cpfUsuario,
@@ -47,7 +47,7 @@ public class ChatComtroller {
         return ResponseEntity.status(201).body(res);
     }
 
-    @PostMapping("{cpfUsuario}/{cpfFuncionario}/{mensagem}")
+    @PostMapping("mensagemUsuario/{cpfUsuario}/{cpfFuncionario}/{mensagem}")
     public ResponseEntity<ChatDto> enviarMensagemUsuario(
             @PathVariable String cpfUsuario,
             @PathVariable String cpfFuncionario,
