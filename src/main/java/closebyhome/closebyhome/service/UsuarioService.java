@@ -135,23 +135,27 @@ public class UsuarioService {
                 usuarioLogarDto.getCodigoCondominio()
         );
 
-        UsuarioDto usuarioDto = new UsuarioDto();
+        if (user != null) {
+            UsuarioDto usuarioDto = new UsuarioDto();
 
-        usuarioDto.setBloco(user.getBloco());
-        usuarioDto.setCpf(user.getCpf());
-        usuarioDto.setEmail(user.getEmail());
-        usuarioDto.setNome(user.getNome());
-        usuarioDto.setSenha(user.getSenha());
-        usuarioDto.setTelefone(user.getTelefone());
-        usuarioDto.setImagem(user.getImagem());
-        usuarioDto.setFuncionario(user.getFuncionario());
-        usuarioDto.setCodigoCondominio(user.getCodigoCondominio().getCodigoCondominio());
+            usuarioDto.setBloco(user.getBloco());
+            usuarioDto.setCpf(user.getCpf());
+            usuarioDto.setEmail(user.getEmail());
+            usuarioDto.setNome(user.getNome());
+            usuarioDto.setSenha(user.getSenha());
+            usuarioDto.setTelefone(user.getTelefone());
+            usuarioDto.setImagem(user.getImagem());
+            usuarioDto.setFuncionario(user.getFuncionario());
+            usuarioDto.setCodigoCondominio(user.getCodigoCondominio().getCodigoCondominio());
 
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        List<Funcionario> funcionarioList = funcionarioRepository.findAll();
-        gravaArquivoTxt(usuarioList,funcionarioList,"arquivo_txt");
+            List<Usuario> usuarioList = usuarioRepository.findAll();
+            List<Funcionario> funcionarioList = funcionarioRepository.findAll();
+            gravaArquivoTxt(usuarioList,funcionarioList,"arquivo_txt");
 
-        return usuarioDto;
+            return usuarioDto;
+        }
+            return null;
+
     }
 
     public List<UsuarioDto> buscarPorCondominio(Integer idCondominio) {
