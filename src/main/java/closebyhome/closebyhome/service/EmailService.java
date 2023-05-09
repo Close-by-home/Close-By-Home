@@ -37,4 +37,32 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+
+    public void EnviarRecuperaSenha(String emailUsuario,String cpf) {
+        String meuEmail = "closebyhomegp5@gmail.com";
+        String senha = "psurrtdypqzmjght";
+
+        SimpleEmail email = new SimpleEmail();
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(465);
+        email.setAuthenticator(new DefaultAuthenticator(meuEmail, senha));
+        email.setSSLOnConnect(true);
+
+        try {
+
+            email.setFrom(meuEmail);
+            email.setSubject("CloseByHome");
+            email.setMsg("" +
+                    "CloseByHome\n" +
+                    "Segue o link para ser redefinida sua senha. \n" +
+                    "https://www.youtube.com/watch?v=nijuxYwvyco: \n" + cpf);
+            email.addTo(emailUsuario);
+            email.send();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
