@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "Notificacao", description = "Requesição das notificações dos serviços.")
-@CrossOrigin(origins = "http://3.221.81.114:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/notificacao")
 public class NotificacaoController {

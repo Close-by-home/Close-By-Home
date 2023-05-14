@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Funcionario", description = "Requesição dos Funcionarios.")
-@CrossOrigin(origins = "http://3.221.81.114:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/funcionario")
 public class FuncionarioController {
