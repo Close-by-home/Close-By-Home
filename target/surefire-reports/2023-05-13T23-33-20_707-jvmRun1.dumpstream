@@ -1,0 +1,576 @@
+# Created at 2023-05-13T23:33:40.194
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2023-05-13T23:33:40.778
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:40.779
+Unexpected IOException with stream:   .   ____          _            __ _ _
+
+
+# Created at 2023-05-13T23:33:40.781
+Unexpected IOException with stream:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+
+# Created at 2023-05-13T23:33:40.782
+Unexpected IOException with stream: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+
+# Created at 2023-05-13T23:33:40.783
+Unexpected IOException with stream:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+
+# Created at 2023-05-13T23:33:40.785
+Unexpected IOException with stream:   '  |____| .__|_| |_|_| |_\__, | / / / /
+
+
+# Created at 2023-05-13T23:33:40.786
+Unexpected IOException with stream:  =========|_|==============|___/=/_/_/_/
+
+
+# Created at 2023-05-13T23:33:40.788
+Unexpected IOException with stream:  :: Spring Boot ::                (v2.7.4)
+
+
+# Created at 2023-05-13T23:33:40.789
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:40.793
+Unexpected IOException with stream: 2023-05-13 23:33:40.792  INFO 2744 --- [           main] c.c.controller.CondominioControllerTest  : Starting CondominioControllerTest using Java 11.0.18 on DESKTOP-HCCQLAO with PID 2744 (started by deadp in C:\Users\deadp\Downloads\close_by_home\Close-By-Home)
+
+
+# Created at 2023-05-13T23:33:40.794
+Unexpected IOException with stream: 2023-05-13 23:33:40.794  INFO 2744 --- [           main] c.c.controller.CondominioControllerTest  : No active profile set, falling back to 1 default profile: "default"
+
+
+# Created at 2023-05-13T23:33:41.242
+Unexpected IOException with stream: 2023-05-13 23:33:41.241  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+
+# Created at 2023-05-13T23:33:41.287
+Unexpected IOException with stream: 2023-05-13 23:33:41.286  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 7 JPA repository interfaces.
+
+
+# Created at 2023-05-13T23:33:42.288
+Unexpected IOException with stream: 2023-05-13 23:33:42.287  INFO 2744 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+
+# Created at 2023-05-13T23:33:42.317
+Unexpected IOException with stream: 2023-05-13 23:33:42.316  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+
+
+# Created at 2023-05-13T23:33:43.132
+Unexpected IOException with stream: 2023-05-13 23:33:43.131  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+
+
+# Created at 2023-05-13T23:33:43.134
+Unexpected IOException with stream: 2023-05-13 23:33:43.133  INFO 2744 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+
+
+# Created at 2023-05-13T23:33:43.518
+Unexpected IOException with stream: 2023-05-13 23:33:43.517  INFO 2744 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+
+
+# Created at 2023-05-13T23:33:43.519
+Unexpected IOException with stream: 2023-05-13 23:33:43.518  INFO 2744 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2023-05-13T23:33:43.778
+Unexpected IOException with stream: 2023-05-13 23:33:43.777  WARN 2744 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 56396c0c-fa7c-4a7f-bf29-3ec5dec192f9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+
+
+# Created at 2023-05-13T23:33:43.902
+Unexpected IOException with stream: 2023-05-13 23:33:43.901  INFO 2744 --- [           main] o.s.s.w.a.c.ChannelProcessingFilter      : Validated configuration attributes
+
+
+# Created at 2023-05-13T23:33:43.931
+Unexpected IOException with stream: 2023-05-13 23:33:43.930  INFO 2744 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.access.channel.ChannelProcessingFilter@21dd405a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78854721, org.springframework.security.web.context.SecurityContextPersistenceFilter@75b5d09, org.springframework.security.web.header.HeaderWriterFilter@17eb5661, org.springframework.security.web.csrf.CsrfFilter@140e003e, org.springframework.security.web.authentication.logout.LogoutFilter@6c418f0b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a99d328, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@578cd644, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11759e4a, org.springframework.security.web.session.SessionManagementFilter@63b0aeb1, org.springframework.security.web.access.ExceptionTranslationFilter@2197990b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@41a18b54]
+
+
+# Created at 2023-05-13T23:33:44.169
+Unexpected IOException with stream: 2023-05-13 23:33:44.169  WARN 2744 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+
+
+# Created at 2023-05-13T23:33:44.462
+Unexpected IOException with stream: 2023-05-13 23:33:44.461  INFO 2744 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:sqlserver://closebyhome.database.windows.net:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=false;TransparentNetworkIPResolution=true;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;encrypt=true;disableStatementPooling=true;databaseName=ProjetoPi;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;'
+
+
+# Created at 2023-05-13T23:33:45.645
+Unexpected IOException with stream: 2023-05-13 23:33:45.644  INFO 2744 --- [           main] c.c.controller.CondominioControllerTest  : Started CondominioControllerTest in 4.924 seconds (JVM running for 24.017)
+
+
+# Created at 2023-05-13T23:33:45.655
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.CondominioControllerTest,listaDeCondominios,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.715
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.CondominioControllerTest,listaDeCondominios,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.719
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.CondominioControllerTest,listaDeCondominiosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.730
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.CondominioControllerTest,listaDeCondominiosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.733
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.CondominioControllerTest,cadastrarCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.745
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.CondominioControllerTest,cadastrarCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.746
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,closebyhome.closebyhome.controller.CondominioControllerTest,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.749
+Unexpected IOException: 1,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,closebyhome.closebyhome.controller.FuncionarioControllerTest,null,null,null
+
+
+# Created at 2023-05-13T23:33:45.751
+Unexpected IOException with stream: 2023-05-13 23:33:45.750  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [closebyhome.closebyhome.controller.FuncionarioControllerTest], using SpringBootContextLoader
+
+
+# Created at 2023-05-13T23:33:45.754
+Unexpected IOException with stream: 2023-05-13 23:33:45.753  INFO 2744 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [closebyhome.closebyhome.controller.FuncionarioControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+
+
+# Created at 2023-05-13T23:33:45.756
+Unexpected IOException with stream: 2023-05-13 23:33:45.755  INFO 2744 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [closebyhome.closebyhome.controller.FuncionarioControllerTest]: FuncionarioControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+
+# Created at 2023-05-13T23:33:45.761
+Unexpected IOException with stream: 2023-05-13 23:33:45.760  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration closebyhome.closebyhome.CloseByHomeApplication for test class closebyhome.closebyhome.controller.FuncionarioControllerTest
+
+
+# Created at 2023-05-13T23:33:45.765
+Unexpected IOException with stream: 2023-05-13 23:33:45.764  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+
+
+# Created at 2023-05-13T23:33:45.767
+Unexpected IOException with stream: 2023-05-13 23:33:45.766  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@65c97eeb, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@49825659, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2ab0ca04, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@53c68ea5, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7d569c10, org.springframework.test.context.support.DirtiesContextTestExecutionListener@26bd2d7d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@a712344, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6da53709, org.springframework.test.context.event.EventPublishingTestExecutionListener@245a90b1, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6b438782, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@68abf2ad, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2cf29dce, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5cdd5ff9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2b55ac77, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1c5c0d2a]
+
+
+# Created at 2023-05-13T23:33:45.798
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:45.799
+Unexpected IOException with stream:   .   ____          _            __ _ _
+
+
+# Created at 2023-05-13T23:33:45.800
+Unexpected IOException with stream:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+
+# Created at 2023-05-13T23:33:45.801
+Unexpected IOException with stream: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+
+# Created at 2023-05-13T23:33:45.802
+Unexpected IOException with stream:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+
+# Created at 2023-05-13T23:33:45.803
+Unexpected IOException with stream:   '  |____| .__|_| |_|_| |_\__, | / / / /
+
+
+# Created at 2023-05-13T23:33:45.804
+Unexpected IOException with stream:  =========|_|==============|___/=/_/_/_/
+
+
+# Created at 2023-05-13T23:33:45.805
+Unexpected IOException with stream:  :: Spring Boot ::                (v2.7.4)
+
+
+# Created at 2023-05-13T23:33:45.806
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:45.810
+Unexpected IOException with stream: 2023-05-13 23:33:45.809  INFO 2744 --- [           main] c.c.c.FuncionarioControllerTest          : Starting FuncionarioControllerTest using Java 11.0.18 on DESKTOP-HCCQLAO with PID 2744 (started by deadp in C:\Users\deadp\Downloads\close_by_home\Close-By-Home)
+
+
+# Created at 2023-05-13T23:33:45.812
+Unexpected IOException with stream: 2023-05-13 23:33:45.811  INFO 2744 --- [           main] c.c.c.FuncionarioControllerTest          : No active profile set, falling back to 1 default profile: "default"
+
+
+# Created at 2023-05-13T23:33:46.249
+Unexpected IOException with stream: 2023-05-13 23:33:46.248  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+
+# Created at 2023-05-13T23:33:46.315
+Unexpected IOException with stream: 2023-05-13 23:33:46.313  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 7 JPA repository interfaces.
+
+
+# Created at 2023-05-13T23:33:46.707
+Unexpected IOException with stream: 2023-05-13 23:33:46.705  INFO 2744 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+
+# Created at 2023-05-13T23:33:46.723
+Unexpected IOException with stream: 2023-05-13 23:33:46.722  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+
+
+# Created at 2023-05-13T23:33:47.497
+Unexpected IOException with stream: 2023-05-13 23:33:47.496  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+
+
+# Created at 2023-05-13T23:33:47.499
+Unexpected IOException with stream: 2023-05-13 23:33:47.498  INFO 2744 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+
+
+# Created at 2023-05-13T23:33:47.847
+Unexpected IOException with stream: 2023-05-13 23:33:47.846  INFO 2744 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+
+
+# Created at 2023-05-13T23:33:47.848
+Unexpected IOException with stream: 2023-05-13 23:33:47.847  INFO 2744 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2023-05-13T23:33:48.084
+Unexpected IOException with stream: 2023-05-13 23:33:48.082  WARN 2744 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 172ee268-66ca-4bda-9cb7-aff8d5183fc5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+
+
+# Created at 2023-05-13T23:33:48.172
+Unexpected IOException with stream: 2023-05-13 23:33:48.171  INFO 2744 --- [           main] o.s.s.w.a.c.ChannelProcessingFilter      : Validated configuration attributes
+
+
+# Created at 2023-05-13T23:33:48.195
+Unexpected IOException with stream: 2023-05-13 23:33:48.194  INFO 2744 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.access.channel.ChannelProcessingFilter@1419f703, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72ab75c, org.springframework.security.web.context.SecurityContextPersistenceFilter@68950f25, org.springframework.security.web.header.HeaderWriterFilter@3a296643, org.springframework.security.web.csrf.CsrfFilter@36cd58e7, org.springframework.security.web.authentication.logout.LogoutFilter@10744fff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e471cef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7f2d681a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40c858fc, org.springframework.security.web.session.SessionManagementFilter@3443732a, org.springframework.security.web.access.ExceptionTranslationFilter@7be3baf2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@31330344]
+
+
+# Created at 2023-05-13T23:33:48.374
+Unexpected IOException with stream: 2023-05-13 23:33:48.373  WARN 2744 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+
+
+# Created at 2023-05-13T23:33:48.645
+Unexpected IOException with stream: 2023-05-13 23:33:48.644  INFO 2744 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:sqlserver://closebyhome.database.windows.net:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=false;TransparentNetworkIPResolution=true;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;encrypt=true;disableStatementPooling=true;databaseName=ProjetoPi;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;'
+
+
+# Created at 2023-05-13T23:33:49.482
+Unexpected IOException with stream: 2023-05-13 23:33:49.481  INFO 2744 --- [           main] c.c.c.FuncionarioControllerTest          : Started FuncionarioControllerTest in 3.711 seconds (JVM running for 27.854)
+
+
+# Created at 2023-05-13T23:33:49.488
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServico,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.498
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServico,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.500
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServicoComNomeInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.507
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServicoComNomeInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.511
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listarFuncionariosPorCondominioVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.518
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listarFuncionariosPorCondominioVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.520
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listaDeUsuariosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.527
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listaDeUsuariosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.529
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNome,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.535
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNome,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.538
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServicoComServicoInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.545
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeServicoComServicoInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.547
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloServico,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.554
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloServico,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.556
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listarFuncionariosPorCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.563
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,listarFuncionariosPorCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.565
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloServicoErrado,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.572
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloServicoErrado,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.575
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeErrado,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.582
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,buscarFuncionarioPeloNomeErrado,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.584
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,retornaListaDeUsuarios,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.591
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.FuncionarioControllerTest,retornaListaDeUsuarios,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.593
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,closebyhome.closebyhome.controller.FuncionarioControllerTest,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.594
+Unexpected IOException: 1,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,closebyhome.closebyhome.controller.UsuarioControllerTest,null,null,null
+
+
+# Created at 2023-05-13T23:33:49.596
+Unexpected IOException with stream: 2023-05-13 23:33:49.595  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [closebyhome.closebyhome.controller.UsuarioControllerTest], using SpringBootContextLoader
+
+
+# Created at 2023-05-13T23:33:49.599
+Unexpected IOException with stream: 2023-05-13 23:33:49.598  INFO 2744 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [closebyhome.closebyhome.controller.UsuarioControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+
+
+# Created at 2023-05-13T23:33:49.600
+Unexpected IOException with stream: 2023-05-13 23:33:49.599  INFO 2744 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [closebyhome.closebyhome.controller.UsuarioControllerTest]: UsuarioControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+
+# Created at 2023-05-13T23:33:49.603
+Unexpected IOException with stream: 2023-05-13 23:33:49.603  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration closebyhome.closebyhome.CloseByHomeApplication for test class closebyhome.closebyhome.controller.UsuarioControllerTest
+
+
+# Created at 2023-05-13T23:33:49.606
+Unexpected IOException with stream: 2023-05-13 23:33:49.606  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+
+
+# Created at 2023-05-13T23:33:49.608
+Unexpected IOException with stream: 2023-05-13 23:33:49.607  INFO 2744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5319f536, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1c586bb6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@503eac4c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1eaf95d2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2836374, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5d59ad49, org.springframework.test.context.transaction.TransactionalTestExecutionListener@78a03662, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1ac32da1, org.springframework.test.context.event.EventPublishingTestExecutionListener@3c2654e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1361b39a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6a8b94b2, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@69a61267, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@795ef208, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@673d73da, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5125558b]
+
+
+# Created at 2023-05-13T23:33:49.633
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:49.634
+Unexpected IOException with stream:   .   ____          _            __ _ _
+
+
+# Created at 2023-05-13T23:33:49.635
+Unexpected IOException with stream:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+
+# Created at 2023-05-13T23:33:49.636
+Unexpected IOException with stream: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+
+# Created at 2023-05-13T23:33:49.636
+Unexpected IOException with stream:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+
+# Created at 2023-05-13T23:33:49.637
+Unexpected IOException with stream:   '  |____| .__|_| |_|_| |_\__, | / / / /
+
+
+# Created at 2023-05-13T23:33:49.638
+Unexpected IOException with stream:  =========|_|==============|___/=/_/_/_/
+
+
+# Created at 2023-05-13T23:33:49.639
+Unexpected IOException with stream:  :: Spring Boot ::                (v2.7.4)
+
+
+# Created at 2023-05-13T23:33:49.640
+Unexpected IOException with stream: 
+
+
+# Created at 2023-05-13T23:33:49.644
+Unexpected IOException with stream: 2023-05-13 23:33:49.643  INFO 2744 --- [           main] c.c.controller.UsuarioControllerTest     : Starting UsuarioControllerTest using Java 11.0.18 on DESKTOP-HCCQLAO with PID 2744 (started by deadp in C:\Users\deadp\Downloads\close_by_home\Close-By-Home)
+
+
+# Created at 2023-05-13T23:33:49.645
+Unexpected IOException with stream: 2023-05-13 23:33:49.644  INFO 2744 --- [           main] c.c.controller.UsuarioControllerTest     : No active profile set, falling back to 1 default profile: "default"
+
+
+# Created at 2023-05-13T23:33:49.949
+Unexpected IOException with stream: 2023-05-13 23:33:49.949  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+
+# Created at 2023-05-13T23:33:49.991
+Unexpected IOException with stream: 2023-05-13 23:33:49.990  INFO 2744 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 7 JPA repository interfaces.
+
+
+# Created at 2023-05-13T23:33:50.272
+Unexpected IOException with stream: 2023-05-13 23:33:50.271  INFO 2744 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+
+# Created at 2023-05-13T23:33:50.285
+Unexpected IOException with stream: 2023-05-13 23:33:50.284  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+
+
+# Created at 2023-05-13T23:33:51.081
+Unexpected IOException with stream: 2023-05-13 23:33:51.080  INFO 2744 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+
+
+# Created at 2023-05-13T23:33:51.083
+Unexpected IOException with stream: 2023-05-13 23:33:51.082  INFO 2744 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+
+
+# Created at 2023-05-13T23:33:51.431
+Unexpected IOException with stream: 2023-05-13 23:33:51.430  INFO 2744 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+
+
+# Created at 2023-05-13T23:33:51.432
+Unexpected IOException with stream: 2023-05-13 23:33:51.431  INFO 2744 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2023-05-13T23:33:51.608
+Unexpected IOException with stream: 2023-05-13 23:33:51.607  WARN 2744 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0d19feca-d840-4532-8b36-2b0e97b5bcda
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+
+
+# Created at 2023-05-13T23:33:51.699
+Unexpected IOException with stream: 2023-05-13 23:33:51.698  INFO 2744 --- [           main] o.s.s.w.a.c.ChannelProcessingFilter      : Validated configuration attributes
+
+
+# Created at 2023-05-13T23:33:51.720
+Unexpected IOException with stream: 2023-05-13 23:33:51.719  INFO 2744 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.access.channel.ChannelProcessingFilter@1a5df070, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3df99d5e, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e9ab294, org.springframework.security.web.header.HeaderWriterFilter@356c8fa9, org.springframework.security.web.csrf.CsrfFilter@9640678, org.springframework.security.web.authentication.logout.LogoutFilter@7e2cebdf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72a522f1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2365facb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1483ecad, org.springframework.security.web.session.SessionManagementFilter@67e42fd6, org.springframework.security.web.access.ExceptionTranslationFilter@2bd2fa2c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c1c3c13]
+
+
+# Created at 2023-05-13T23:33:51.897
+Unexpected IOException with stream: 2023-05-13 23:33:51.896  WARN 2744 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+
+
+# Created at 2023-05-13T23:33:52.144
+Unexpected IOException with stream: 2023-05-13 23:33:52.143  INFO 2744 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:sqlserver://closebyhome.database.windows.net:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=false;TransparentNetworkIPResolution=true;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;encrypt=true;disableStatementPooling=true;databaseName=ProjetoPi;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;'
+
+
+# Created at 2023-05-13T23:33:52.946
+Unexpected IOException with stream: 2023-05-13 23:33:52.946  INFO 2744 --- [           main] c.c.controller.UsuarioControllerTest     : Started UsuarioControllerTest in 3.336 seconds (JVM running for 31.32)
+
+
+# Created at 2023-05-13T23:33:52.951
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listarPorCondominioVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.958
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listarPorCondominioVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.960
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,logarUsuarioInexistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.966
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,logarUsuarioInexistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.968
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,ativarFuncionarioEmailInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.974
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,ativarFuncionarioEmailInvalido,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.976
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,alterarSenhaRecebidaQuandoUsuarioExistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.982
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,alterarSenhaRecebidaQuandoUsuarioExistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.984
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listarPorCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.990
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listarPorCondominio,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.992
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listaDeUsuariosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:52.998
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,listaDeUsuariosVazia,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.000
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,naoAlterarSenhaRecebidaQuandoUsuarioInexistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.005
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,naoAlterarSenhaRecebidaQuandoUsuarioInexistente,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.007
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,ativarFuncionario,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.013
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,ativarFuncionario,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.015
+Unexpected IOException: 5,1,closebyhome.closebyhome.controller.UsuarioControllerTest,retornaListaDeUsuarios,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.020
+Unexpected IOException: 6,1,closebyhome.closebyhome.controller.UsuarioControllerTest,retornaListaDeUsuarios,null,null,null
+
+
+# Created at 2023-05-13T23:33:53.022
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,closebyhome.closebyhome.controller.UsuarioControllerTest,null,null,null
+
+
