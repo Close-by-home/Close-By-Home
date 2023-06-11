@@ -15,10 +15,9 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(length = 45)
     private String nomeServico;
 
-  //  @OneToOne(mappedBy = "idFuncionario")
-  //  private Descricao descricao;
     private Double valorMinimo;
     @OneToMany
     private List<Agenda> agenda;

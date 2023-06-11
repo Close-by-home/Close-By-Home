@@ -1,6 +1,7 @@
 package closebyhome.closebyhome.models;
 
 import closebyhome.closebyhome.dto.CondominioDto;
+import org.hibernate.validator.constraints.br.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,15 +15,23 @@ public class Condominio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @CNPJ
     private String cnpj;
+    @Column(length = 15)
     private String codigoCondominio;
+
     private String cep;
+    @Column(length = 15)
     private String telefone;
     @OneToMany
     private List<Usuario> usuarios;
+    @Column(length = 4)
     private int numero;
+    @Column(length = 2)
     private int quatidadeDeBlocos;
+    @Column(length = 45)
     private String sindico;
+    @Column(length = 50)
     private String emailSindico;
 
     public Condominio(CondominioDto condominioDto) {

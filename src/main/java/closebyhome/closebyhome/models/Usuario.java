@@ -17,8 +17,7 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "fk_codigo_condominio")
     private Condominio codigoCondominio;
-//    @OneToMany
-//    private List<Agenda> agenda;
+    @Column(length = 2)
     private String bloco;
     @Email
     private String email;
@@ -26,16 +25,20 @@ public class Usuario {
     @NotBlank
     @NotNull
     @NotEmpty
+    @Column(length = 50)
     private String nome;
     @NotBlank
     @NotNull
     @NotEmpty
     @Size(min = 6, max = 14)
+    @Column(length = 14)
     private String senha;
     private Boolean funcionario;
 
     @Size(max = 1)
+    @Column(length = 1)
     private String sexo;
+    @Column(length = 255)
     private String imagem;
     @OneToOne(mappedBy = "idUsuario")
     private Funcionario func;

@@ -13,11 +13,13 @@ public class Notificacao {
     @NotBlank
     @NotNull
     @NotEmpty
+    @Column(length = 45)
     private String titulo;
 
     @NotBlank
     @NotNull
     @NotEmpty
+    @Column(length = 45)
     private String descricao;
 
     @ManyToOne

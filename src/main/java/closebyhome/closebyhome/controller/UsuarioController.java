@@ -102,28 +102,11 @@ public class UsuarioController {
             @PathVariable String codigoCondominio,
             @PathVariable String email
     ) {
-            this.usuarioService.mudarSenha(codigoCondominio,email);
+            this.usuarioService.recuperarSenha
+                    (codigoCondominio,email);
             return ResponseEntity.status(202).body("ok");
     }
 
-//    @PutMapping("atualizar-senha-esquecida/{codCondominio}/{email}/{novaSenha}")
-//    public ResponseEntity<String> atualizarSenhaEsquicida(
-//            @PathVariable String codCondominio,
-//            @PathVariable String email,
-//            @PathVariable String novaSenha
-//
-//    ) {
-//
-//        Boolean senhaAtualizada = this.usuarioService.atualizarSenhaEsquecida(codCondominio, email,
-//                novaSenha);
-//
-//        if (senhaAtualizada == true) {
-//            return ResponseEntity.status(200).body("Senha atualizada com sucesso!");
-//        } else {
-//            return ResponseEntity.status(404).body("Email ou senha invalidos");
-//        }
-//    }
-    //endregion
 
     //region Cadastrar e ativar perfil
     @PutMapping("/ativar-perfil-funcionario/{email}/{servico}/{valorMin}")
