@@ -56,7 +56,7 @@ public class EmailService {
             email.setMsg("" +
                     "CloseByHome\n" +
                     "Segue o link para ser redefinida sua senha. \n" +
-                    "https://www.youtube.com/watch?v=nijuxYwvyco: \n" + cpf);
+                    "https://www.closebyhome.zapto.org/ChangePassword/" + cpf);
             email.addTo(emailUsuario);
             email.send();
 

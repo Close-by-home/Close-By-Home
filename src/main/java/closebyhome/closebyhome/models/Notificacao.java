@@ -19,7 +19,7 @@ public class Notificacao {
     @NotBlank
     @NotNull
     @NotEmpty
-    @Column(length = 45)
+    @Column(length = 255)
     private String descricao;
 
     @ManyToOne

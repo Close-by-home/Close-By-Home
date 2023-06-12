@@ -61,6 +61,7 @@ public class UsuarioController {
     //region Logar
     @PostMapping("/logar")
     public ResponseEntity<UsuarioDto> logar(@RequestBody @Valid UsuarioLogarDto usuario) {
+        System.out.println(usuario);
 
         UsuarioDto res = this.usuarioService.buscarUsuario(usuario);
 
@@ -88,7 +89,7 @@ public class UsuarioController {
             return ResponseEntity.status(204).body("Email ou senha invalidos");
         }
     }
-    @PutMapping("mudar-senha/{cpf}/{senhaNova}")
+    @PutMapping("recuperar-senha/{cpf}/{senhaNova}")
     public ResponseEntity<String> mudarSenha(
             @PathVariable String cpf,
             @PathVariable String senhaNova
@@ -97,7 +98,7 @@ public class UsuarioController {
         return ResponseEntity.status(202).body("Senha Atualizada com Sucesso!");
     }
 
-    @PostMapping("recuperar-senha/{codigoCondominio}/{email}")
+    @PostMapping("email-recuperacao-senha/{codigoCondominio}/{email}")
     public ResponseEntity<String> recuperarSenhaEmail(
             @PathVariable String codigoCondominio,
             @PathVariable String email
