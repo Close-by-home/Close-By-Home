@@ -14,6 +14,7 @@ public class FuncionarioDtoFactory {
         funcionarioDto.setNomeUsuario(funcionarioDomain.getIdUsuario().getNome());
         funcionarioDto.setEmailUsuario(funcionarioDomain.getIdUsuario().getEmail());
         funcionarioDto.setCpf(funcionarioDomain.getIdUsuario().getCpf());
+        funcionarioDto.setTelefone(funcionarioDomain.getIdUsuario().getTelefone());
 //        funcionarioDto.setNota(0);
         return funcionarioDto;
     }

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class FuncionarioDto {
 
     private String nomeServico;
+    private String telefone;
     private String nomeUsuario;
     private String emailUsuario;
     private Double valorMinimo;
@@ -20,6 +21,13 @@ public class FuncionarioDto {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 //NÂO DESCOMENTA ESSE GET POR FAVOR SE VOCE TEM AMOR A SUA VIDA NAO FACA ISSO
 //    public Usuario getUsuario() {
